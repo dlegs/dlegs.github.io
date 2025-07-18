@@ -19,13 +19,15 @@ body{
     height:100vh;
     overflow:hidden;
 }
+.ui-resizable{
+    position:fixed !important;
+}
 /*----------------collective edits for the terminal windows------------*/
 .termy{
     position:fixed;
-    border-radius:4px;
+    border-radius:8px;
     box-shadow: 2px 2px 12px 3px rgb(0 0 0 / 24%);
     background:var(--dark);
-    padding:12px;
     color:#ffffff;
     box-sizing: border-box;
 }
@@ -58,4 +60,18 @@ body{
     height:250px;
     left:14vw;
     bottom:18px;
+}
+/*----------------universal status bar styling for the terminals---------*/
+.status-bar{
+    background:#383838;
+    height:24px;
+    border-radius: 8px 8px 0 0;
+    padding-left:7px;
+}
+.status-bar span{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    border-radius:24px;
+    margin:7px 2px 8px 0;
 }
