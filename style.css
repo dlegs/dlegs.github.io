@@ -1,0 +1,61 @@
+/*---------------------------variables------------------------------*/
+:root{
+    --red:#c62420;
+    --yellow:#d39b1f;
+    --green: #979914;
+    --blue:#4b8588;
+    --purple:#ad6087;
+    --teal:#6c9e69;
+    --beige:#a79a84;
+    --dark:#282828;
+    --light:#eadcb2;
+}
+/*-------------------------global edits for the site-------------------*/
+body{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+}
+/*----------------collective edits for the terminal windows------------*/
+.termy{
+    position:fixed;
+    border-radius:4px;
+    box-shadow: 2px 2px 12px 3px rgb(0 0 0 / 24%);
+    background:var(--dark);
+    padding:12px;
+    color:#ffffff;
+    box-sizing: border-box;
+}
+
+/*---------individual edits for each terminal window--------------*/  
+#pic{
+    z-index:0;
+    width:250px;
+    height:250px;
+    top:18px;
+    left:18px;
+}
+#terminal{
+    z-index:1;
+    width:80vw;
+    height:80vh;
+    top:10vh;
+    left:10vw;
+}
+#docu{
+    z-index:2;
+    width:250px;
+    height:350px;
+    top:18vh;
+    right:18px;
+}
+#link{
+    z-index:3;
+    width:600px;
+    height:250px;
+    left:14vw;
+    bottom:18px;
+}
