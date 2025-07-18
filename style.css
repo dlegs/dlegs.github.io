@@ -18,9 +18,14 @@ body{
     width:100vw;
     height:100vh;
     overflow:hidden;
+    background: var(--light);
 }
 .ui-resizable{
     position:fixed !important;
+}
+p{
+    font-family:monospace;
+    font-size:15px;
 }
 /*----------------collective edits for the terminal windows------------*/
 .termy{
@@ -31,35 +36,37 @@ body{
     color:#ffffff;
     box-sizing: border-box;
 }
-
+.termy p{
+    padding:3px 12px 12px 12px;
+}
 /*---------individual edits for each terminal window--------------*/  
 #pic{
     z-index:0;
     width:250px;
     height:250px;
-    top:18px;
-    left:18px;
-}
-#terminal{
-    z-index:1;
-    width:80vw;
-    height:80vh;
     top:10vh;
     left:10vw;
 }
-#docu{
+#terminal{
+    z-index:1;
+    width:66vw;
+    height:66vh;
+    top:17vh;
+    left:17vw;
+}
+#link{
     z-index:2;
     width:250px;
     height:350px;
-    top:18vh;
-    right:18px;
+    top:22vh;
+    right:10vw;
 }
-#link{
+#docu{
     z-index:3;
-    width:600px;
-    height:250px;
+    width:500px;
+    height:200px;
     left:14vw;
-    bottom:18px;
+    bottom:10vh;
 }
 /*----------------universal status bar styling for the terminals---------*/
 .status-bar{
@@ -74,4 +81,31 @@ body{
     height:10px;
     border-radius:24px;
     margin:7px 2px 8px 0;
+}
+/*---------media queries for a responsive layout across different screen sizes-------*/
+@media (max-width: 700px) {
+        #pic{
+        width:200px;
+        height:200px;
+        top:2vh;
+        left:-2vw;
+    }
+    #terminal{
+        width:88vw;
+        height:88vh;
+        top:6vh;
+        left:6vw;
+    }
+    #link{
+        width:250px;
+        height:350px;
+        top:44vh;
+        right:-2vw;
+    }
+    #docu{
+        width:92vw;
+        height:200px;
+        left:2vw;
+        bottom:2vh;
+    }
 }
