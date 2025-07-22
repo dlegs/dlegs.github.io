@@ -1,14 +1,16 @@
 /*---------------------------variables------------------------------*/
 :root{
-    --red:#c62420;
-    --yellow:#d39b1f;
-    --green: #979914;
-    --blue:#4b8588;
+    --red:#ec6a5d;
+    --yellow:#f4be4e;
+    --green: #61c554;
+    --blue:#259eff;
     --purple:#ad6087;
     --teal:#6c9e69;
     --beige:#a79a84;
-    --dark:#282828;
-    --light:#eadcb2;
+    --dark:#141414;
+    --dark-bg:rgba(30,30,31,.9);
+    --med:#1C1C1C;
+    --light:#eeedec;
 }
 /*-------------------------global edits for the site-------------------*/
 body{
@@ -18,7 +20,7 @@ body{
     width:100vw;
     height:100vh;
     overflow:hidden;
-    background: var(--light);
+    background: var(--dark);
 }
 .ui-resizable{
     position:fixed !important;
@@ -27,12 +29,15 @@ p{
     font-family:monospace;
     font-size:15px;
 }
-/*----------------collective edits for the terminal windows------------*/
-.termy{
+/*----------------collective edits for all terminal windows------------*/
+.termish{
     position:fixed;
     border-radius:8px;
-    box-shadow: 2px 2px 12px 3px rgb(0 0 0 / 24%);
-    background:var(--dark);
+    /*box-shadow: 2px 2px 12px 3px rgb(0 0 0 / 84%);*/
+    outline: .02px solid var(--med);
+    box-shadow: 6px 6px 18px 2px rgba(0, 0, 0, 0.6);
+    background:var(--dark-bg);
+    backdrop-filter: blur(12px);
     color:#ffffff;
     box-sizing: border-box;
 }
@@ -41,11 +46,11 @@ p{
 }
 /*---------individual edits for each terminal window--------------*/  
 #pic{
-    z-index:0;
     width:250px;
     height:250px;
     top:10vh;
     left:10vw;
+    display:none;
 }
 #terminal{
     z-index:1;
@@ -55,22 +60,22 @@ p{
     left:17vw;
 }
 #link{
-    z-index:2;
     width:250px;
     height:350px;
     top:22vh;
     right:10vw;
+    display:none;
 }
 #docu{
-    z-index:3;
     width:500px;
     height:200px;
     left:14vw;
     bottom:10vh;
+    display:none;
 }
 /*----------------universal status bar styling for the terminals---------*/
 .status-bar{
-    background:#383838;
+    background:var(--med);
     height:24px;
     border-radius: 8px 8px 0 0;
     padding-left:7px;
@@ -81,6 +86,13 @@ p{
     height:10px;
     border-radius:24px;
     margin:7px 2px 8px 0;
+}
+/*----------------------overriding styling for JQuery Terminal--------*/
+@supports (--css:variables) {
+    .cmd, .cmd div, .cmd span[data-text]:not(.cmd-inverted):not(.token):not(.emoji), .terminal, .terminal-output>:not(.raw) a, .terminal-output>:not(.raw) div, .terminal-output>:not(.raw) span[data-text]:not(.token):not(.inverted):not(.terminal-inverted):not(.cmd-inverted):not(.terminal-error):not(.emoji), .terminal.external [data-text]{
+        background-color:var(--dark) !important;
+        color:var(--light) !important;
+    }
 }
 /*---------media queries for a responsive layout across different screen sizes-------*/
 @media (max-width: 700px) {

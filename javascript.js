@@ -1,8 +1,19 @@
 $(document).ready(function () {
 
+/*---------------initialize terminal---------------*/
+const greetings = $('#greetings');
+$(function() {
+   $('#terminal').terminal();
+});
 
+$(function() {
+   $('#terminal').terminal(function(command) {
+      greetings: $("#greetings").innerHTML;
+
+   });
+});
 /*--------------make terms draggable n resizable-------------*/
-$( ".termy" ).draggable().resizable();
+$( ".termish" ).draggable().resizable();
 
 /*--------------append header to all terms---------------*/
 $(".status-bar").append(
