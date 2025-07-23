@@ -3,6 +3,7 @@
     --red:#ec6a5d;
     --yellow:#f4be4e;
     --green: #61c554;
+    --hacker-green: #00FF00;
     --blue:#259eff;
     --purple:#ad6087;
     --teal:#6c9e69;
@@ -11,6 +12,8 @@
     --dark-bg:rgba(30,30,31,.9);
     --med:#1C1C1C;
     --light:#eeedec;
+    --terminal-font-size: calc(var(--size, 1) * (12px / var(--pixel-density, 1)));
+    --terminal-line: calc(var(--size, 1) * (15px / var(--pixel-density, 1)) + 1px / var(--pixel-density, 1));
 }
 /*-------------------------global edits for the site-------------------*/
 body{
@@ -21,27 +24,33 @@ body{
     height:100vh;
     overflow:hidden;
     background: var(--dark);
+    font-size:var(--terminal-font-size);
+    line-height:var(--terminal-line);
 }
 .ui-resizable{
     position:fixed !important;
 }
-p{
-    font-family:monospace;
-    font-size:15px;
+/*------------------edits for the actual terminal-------------------*/
+#terminal{
+    --animation: terminal-underline;
+}
+.terminal-scroller{
+    padding-top:0px !important;
 }
 /*----------------collective edits for all terminal windows------------*/
 .termish{
+    font-family:monospace;
+    font-size: var(--terminal-font-size);
     position:fixed;
     border-radius:8px;
-    /*box-shadow: 2px 2px 12px 3px rgb(0 0 0 / 84%);*/
     outline: .1px solid var(--med);
     box-shadow: 6px 6px 18px 2px rgba(0, 0, 0, 0.8);
-    background:var(--dark-bg);
+    background:var(--dark);
     backdrop-filter: blur(12px);
-    color:#ffffff;
+    color:var(--light);
     box-sizing: border-box;
 }
-.termy p{
+.termish p{
     padding:3px 12px 12px 12px;
 }
 /*---------individual edits for each terminal window--------------*/  
@@ -73,6 +82,14 @@ p{
     left:14vw;
     bottom:10vh;
     display:none;
+}
+#hack{
+    z-index:5;
+    width:500px;
+    height:200px;
+    left: calc(86vw - 500px);
+    top:calc(50vh - 100px);
+    display:none; 
 }
 /*----------------universal status bar styling for the terminals---------*/
 .status-bar{
