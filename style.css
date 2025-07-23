@@ -3,6 +3,7 @@
     --red:#ec6a5d;
     --yellow:#f4be4e;
     --green: #61c554;
+    --hacker-green: #00FF00;
     --blue:#259eff;
     --purple:#ad6087;
     --teal:#6c9e69;
@@ -29,6 +30,13 @@ p{
     font-family:monospace;
     font-size:15px;
 }
+/*------------------edits for the actual terminal-------------------*/
+#terminal{
+    --animation: terminal-underline;
+}
+.terminal-scroller{
+    padding-top:0px !important;
+}
 /*----------------collective edits for all terminal windows------------*/
 .termish{
     position:fixed;
@@ -38,7 +46,7 @@ p{
     box-shadow: 6px 6px 18px 2px rgba(0, 0, 0, 0.8);
     background:var(--dark-bg);
     backdrop-filter: blur(12px);
-    color:#ffffff;
+    color:var;
     box-sizing: border-box;
 }
 .termy p{

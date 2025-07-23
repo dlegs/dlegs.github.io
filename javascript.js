@@ -1,17 +1,19 @@
 $(document).ready(function () {
 
 /*---------------initialize terminal---------------*/
-const greetings = $('#greetings');
-$(function() {
-   $('#terminal').terminal();
-});
-
-$(function() {
-   $('#terminal').terminal(function(command) {
-      greetings: $("#greetings").innerHTML;
-
-   });
-});
+const grtngs = $('#greetings');
+$('#terminal').terminal(
+  function(command, term) {
+    if (command == 'test') {
+      term.echo("you just typed 'test'");
+    } else {
+      term.echo('unknown command');
+    }
+  }, {
+    prompt: 'user@legg.io:~ $ ',
+    greetings: greet.innerHTML
+  } 
+);
 /*--------------make terms draggable n resizable-------------*/
 $( ".termish" ).draggable().resizable();
 
