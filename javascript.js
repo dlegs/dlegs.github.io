@@ -6,7 +6,19 @@ $('#terminal').terminal(
   function(command, term) {
     if (command == 'test') {
       term.echo("you just typed 'test'");
-    } else {
+    } else if (command == 'resume') {
+      term.echo("accessing resume ...");
+      window.open('https://github.com/dlegs/personal-website/asset/resume.pdf', '_blank');
+    } else if (command == 'contact'){
+      term.echo("Initialized message to dylan[at]legg.io ...");
+      /*n.b. not sure i've got this email code right, can't get it to load on my laptop*/
+      window.open('mailto:dylan@legg.io');
+    } else if (command == 'hack'){
+      term.echo("preparing to hack the mainframe ...")
+    }else if (command == 'git'){
+      term.echo("launching GitHub for user @dlegs ...");
+      window.open('https://github.com/dlegs', '_blank');
+    }else {
       term.echo('unknown command');
     }
   }, {
