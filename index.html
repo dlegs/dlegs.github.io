@@ -12,7 +12,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/js/jquery.terminal.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/css/jquery.terminal.min.css" rel="stylesheet"/>
 
-
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script src="dither.js"></script>
         <title>Dylan Leggio</title>
         <link rel="shortcut icon" type="image/png" href="assets/link-to-favicon"/>
         <meta property="og:image" content="assets/link-to-pic">
@@ -22,8 +23,9 @@
     <body>
 
     <!--the main terminal window, where the user interacts with the site-->
-        <section id="terminal" data-name="legg.io / terminal" class="termish">
+        <section id="terminal" class="termish" data-name="legg.io / terminal">
             <div class="status-bar"></div>
+            <div class="logo"><img class="dither" data-threshold='.17' data-dot-size='1' style="width: calc(66vw - 24px)" data-dither="stucki" src="img/legg.svg"></div>
         </section>
 
     <!------------a 'hack the mainframe' dialogue-------->
@@ -32,38 +34,12 @@
             <p>need 2 figure dis out — i'm thinking a cute loading animation and then a dialogue that says like "sorry! dylan is actually sooo good at his job that this site is too secure to even hack" and buttons that say "ok, sorry" or "nice"</p>
         </section>
 
-    <!------------one photograph of Dylan John Leggio, esq.----------->
-        <section id="pic" data-name="legg.io / headshot" class="termish">
-            <div class="status-bar"></div>
-            <p>pic</p>
-        </section>
-
-    <!------------a guide to the commands a user can input------------->
-        <section id="docu" data-name="legg.io / commands" class="termish">
-            <div class="status-bar"></div>
-            <p>docu</p>
-        </section>
-
-    <!------------a 'quick links' section for people who don't wanna play by the rules-------->
-        <section id="link" data-name="legg.io / nav" class="termish">
-            <div class="status-bar"></div>
-            <p>link</p>
-        </section>
-
     <!--------------------templates for the terminal------------------->
-        <template id="greet">
-    ____        __               __                     _     
-   / __ \__  __/ /___ _____     / /   ___  ____ _____ _(_)___ 
-  / / / / / / / / __ `/ __ \   / /   / _ \/ __ `/ __ `/ / __ \
- / /_/ / /_/ / / /_/ / / / /  / /___/  __/ /_/ / /_/ / / /_/ /
-/_____/\__, /_/\__,_/_/ /_/  /_____/\___/\__, /\__, /_/\____/ 
-      /____/                            /____//____/          
-
-Input any of these commands, then press ENTER.
-RESUME      download resume
-GIT         access GitHub
-CONTACT     initialize email
-HACK        hack the mainframe 
+<template id="greet">Type a command, then press enter.
+resume      download resume
+git         access GitHub
+contact     initialize email
+hack        hack the mainframe 
         </template>
 
 
@@ -78,7 +54,6 @@ HACK        hack the mainframe
             integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
             crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/js/jquery.terminal.min.js"></script>
-        <script src="https://unpkg.com/js-polyfills/keyboard.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/jcubic/static/js/wcwidth.js"></script>
     </body>
 </html>

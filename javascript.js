@@ -5,22 +5,21 @@ const grtngs = $('#greetings');
 $('#terminal').terminal(
   function(command, term) {
     if (command == 'test') {
-      term.echo("you just typed 'test'");
+      term.echo("you just typed 'test'", { typing: true, delay: 20 });
     } else if (command == 'resume') {
       term.echo("accessing resume ...");
-      window.open('https://github.com/dlegs/personal-website/asset/resume.pdf', '_blank');
+      window.open('https://github.com/dlegs/personal-website/blob/main/asset/resume.pdf', '_blank');
     } else if (command == 'contact'){
-      term.echo("initializing message to dylan[at]legg.io ...");
-      /*n.b. not sure i've got this email code right, can't get it to load on my laptop*/
-      window.open('mailto:dylan@legg.io');
+      term.echo("initializing message to dylan[at]legg.io ...", { typing: true, delay: 20 });
+      window.open('mailto:dylan@legg.io', '_blank');
     } else if (command == 'hack'){
-      term.echo("preparing to hack the mainframe ...");
+      term.echo("preparing to hack the mainframe ...", { typing: true, delay: 20 });
       $('#hack').css("display", "block");
     }else if (command == 'git'){
-      term.echo("launching GitHub for user @dlegs ...");
+      term.echo("launching GitHub for user @dlegs ...", { typing: true, delay: 20 });
       window.open('https://github.com/dlegs', '_blank');
     }else {
-      term.echo('unknown command');
+      term.echo('unknown command', { typing: true, delay: 20 });
     }
   }, {
     prompt: 'user@legg.io:~ $ ',
@@ -32,7 +31,7 @@ $( ".termish" ).draggable().resizable();
 
 /*--------------append header to all terms---------------*/
 $(".status-bar").append(
-    "<span class='quit' style='background: var(--red);'></span> <span class='min' style='background: var(--yellow)';></span> <span class='max' style='background: var(--green);'></span><div class='name'></div>"
+    "<span class='quit'>+</span> <span class='min'>-</span> <span class='max'>+</span><div class='name'></div>"
 );
 $(".termish").each(function(){
   const text = $(this).data("name");
@@ -65,5 +64,9 @@ $(".quit").on("click", function (){
   const poi = $(this).parent().parent();
     $(poi).css("display", "none");
   });
+
+
+  /*--------------------------dithering code------------------*/
+
   //-----------------------------document closing bracket; don't touch
 });
