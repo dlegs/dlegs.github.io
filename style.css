@@ -1,57 +1,123 @@
+@font-face{
+  font-family: "Sul Mono";
+  src:url('asset/SulMono-Regular.otf');
+  font-weight:400;
+  font-style:normal;
+}
+@font-face{
+  font-family: "Spot Mono";
+  src:url('asset/SpotMono-Light.ttf');
+  font-weight:300;
+  font-style:normal;
+}
+@font-face{
+  font-family: "Suisse Mono";
+  src:url('asset/SuisseMono-Regular.otf');
+  font-weight:400;
+  font-style:normal;
+}
 /*---------------------------variables------------------------------*/
 :root{
-    --red:#ec6a5d;
-    --yellow:#f4be4e;
-    --green: #61c554;
-    --hacker-green: #00FF00;
-    --blue:#259eff;
-    --purple:#ad6087;
-    --teal:#6c9e69;
-    --beige:#a79a84;
-    --dark:#141414;
-    --dark-bg:rgba(30,30,31,.9);
-    --med:#1C1C1C;
-    --light:#eeedec;
-    --terminal-font-size: calc(var(--size, 1) * (12px / var(--pixel-density, 1)));
-    --terminal-line: calc(var(--size, 1) * (15px / var(--pixel-density, 1)) + 1px / var(--pixel-density, 1));
+    --red:#FF5739;
+    --yellow:#DFFF6A;
+    --green: #52F88A;
+    --blue:#3AD1FF;
+    --purple:#D66DFF;
+    --light: #B5FFCD;
+    --light-glow: rgba(181, 255, 205, 0.3);
+    --light-med: #4B6356;
+    --med:#1F2521;
+    --med-glow: rgba(31, 37, 33, 0.5);
+    --dark: #161917;
+    --dark-tl: rgba(22, 25, 23, 0.6);
+    --darker:#101211;
+    --outline: 1px solid var(--light);
+    --font-size: 16px !important;
+    --line-height:1.32 !important;
+    --font: "Spot Mono", monospace;
+
+    --dither-color-1: #161917;
+    --dither-color-2: #B5FFCD;
 }
 /*-------------------------global edits for the site-------------------*/
 body{
     position:absolute;
-    top:0;
-    left:0;
+    top:0px;
+    left:0px;
     width:100vw;
     height:100vh;
     overflow:hidden;
     background: var(--dark);
-    font-size:var(--terminal-font-size);
-    line-height:var(--terminal-line);
+    font-size:var(--font-size);
+    line-height:var(--line-height);
 }
 .ui-resizable{
     position:fixed !important;
 }
 /*------------------edits for the actual terminal-------------------*/
-#terminal{
+#terminal {
     --animation: terminal-underline;
+    background:var(--dark) !important;
+    --color: var(--light) !important;
+    z-index:1;
+    width:66vw;
+    height:66vh;
+    top:17vh;
+    left:17vw;
+    transition: transform .5s;
+    box-sizing:border-box;
 }
+  .terminal, .cmd, .terminal .terminal-output div div, .cmd .prompt {
+    font-size: var(--font-size);
+    line-height: 24px;
+    }
 .terminal-scroller{
     padding-top:0px !important;
 }
+.cmd-editable, .terminal .terminal-fill, .terminal-scroller {
+    /* [DEFAULT] padding: calc(1px * var(--padding, 10) / var(--pixel-density, 1));*/
+    padding: 0px 12px 0px 12px !important;
+}
+.logo{
+    margin:12px 12px 6px 12px;
+}
+#greet{
+    --animation: typing;
+}
+.terminal-wrapper{
+    --background: transparent;
+    background: transparent !important;
+}
+/*----------------------overriding styling for JQuery Terminal--------*/
+@supports (--css:variables) {
+    .cmd, .cmd div, .cmd span[data-text]:not(.cmd-inverted):not(.token):not(.emoji), .terminal, .terminal-output>:not(.raw) a, .terminal-output>:not(.raw) div, .terminal-output>:not(.raw) span[data-text]:not(.token):not(.inverted):not(.terminal-inverted):not(.cmd-inverted):not(.terminal-error):not(.emoji), .terminal.external [data-text]{
+        background: transparent;
+        color:var(--light);
+    }
+    .terminal, .terminal-output>:not(.raw) a, .terminal-output>:not(.raw) div, .terminal-output>:not(.raw) span{
+        font-size:var(--font-size) !important;
+    }
+    .cmd, .cmd div, .cmd span {
+        font-size:var(--font-size) !important;
+    }
+    .cmd div, .terminal, .terminal .terminal-output>:not(.raw)>div, .terminal.external div{
+        line-height:var(--line-height) !important;
+    }
+}
 /*----------------collective edits for all terminal windows------------*/
 .termish{
-    font-family:monospace;
-    font-size: var(--terminal-font-size);
+    font-family:var(--font);
+    font-size: var(--font-size);
     position:fixed;
-    border-radius:8px;
-    outline: .1px solid var(--med);
-    box-shadow: 6px 6px 18px 2px rgba(0, 0, 0, 0.8);
     background:var(--dark);
     backdrop-filter: blur(12px);
     color:var(--light);
     box-sizing: border-box;
+    border: var(--outline);
+    border-radius:8px 8px 8px 8px !important;
 }
 .termish p{
-    padding:3px 12px 12px 12px;
+    padding:3px 12px 0px 12px;
 }
 /*---------individual edits for each terminal window--------------*/  
 #pic{
@@ -60,14 +126,6 @@ body{
     top:10vh;
     left:10vw;
     display:none;
-}
-#terminal{
-    z-index:1;
-    width:66vw;
-    height:66vh;
-    top:17vh;
-    left:17vw;
-    transition: transform .5s;
 }
 #link{
     width:250px;
@@ -87,37 +145,50 @@ body{
     z-index:5;
     width:500px;
     height:200px;
-    left: calc(86vw - 500px);
-    top:calc(50vh - 100px);
+    left: calc(50% - 250px);
+    top:calc(50% - 100px);
     display:none; 
 }
 /*----------------universal status bar styling for the terminals---------*/
 .status-bar{
-    background:var(--med);
-    height:28px;
-    border-radius: 8px 8px 0 0;
-    padding-left:8px;
+    font-size:12px;
+    position:relative;
+    border-radius: 4px 4px 0 0;
+    margin:12px;
+    margin-bottom:0px;
+    border-bottom:var(--outline);
 }
 .status-bar span{
     display:inline-block;
-    width:10px;
-    height:10px;
+    width:12px;
+    height:12px;
+    border:var(--outline);
+    color: var(--light);
     border-radius:24px;
-    margin:8px 2px 8px 0;
+    text-align:center;
+    line-height:1.05;
+    margin-bottom:10px;
 }
 .quit, .min, .max{
     transition:.2s;
 }
 .quit:hover, .min:hover, .max:hover{
-   -webkit-filter: brightness(60%);
+   transform:rotate(90deg);
    cursor:pointer;
+}
+.quit{
+    transform:rotate(45deg);
+}
+.quit:hover{
+    transform:rotate(135deg);
 }
 .name{
     display:inline-block;
     position:relative;
-    height:24px;
-    left: calc(50% - 72px);
-    transform:translateX(-50%) translateY(-8px);
+    padding-left:12px;
+   /* left: calc(50% - 72px);
+    transform:translateX(-50%);*/
+    color:var(--light);
     cursor:default;
 }
 .minned .name{
@@ -134,12 +205,11 @@ body{
     width:20vw !important;
     height:24px !important;
 }
-/*----------------------overriding styling for JQuery Terminal--------*/
-@supports (--css:variables) {
-    .cmd, .cmd div, .cmd span[data-text]:not(.cmd-inverted):not(.token):not(.emoji), .terminal, .terminal-output>:not(.raw) a, .terminal-output>:not(.raw) div, .terminal-output>:not(.raw) span[data-text]:not(.token):not(.inverted):not(.terminal-inverted):not(.cmd-inverted):not(.terminal-error):not(.emoji), .terminal.external [data-text]{
-        background-color:var(--dark) !important;
-        color:var(--light) !important;
-    }
+/*---------------------------dithered------------------------*/
+canvas.dither-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
 }
 /*---------media queries for a responsive layout across different screen sizes-------*/
 @media (max-width: 700px) {
