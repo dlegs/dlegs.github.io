@@ -59,13 +59,13 @@ body{
     --animation: terminal-underline;
     background:var(--dark) !important;
     --color: var(--light) !important;
-    z-index:1;
     width:66vw;
     height:66vh;
     top:17vh;
     left:17vw;
     transition: transform .5s;
     box-sizing:border-box;
+    z-index:2;
 }
   .terminal, .cmd, .terminal .terminal-output div div, .cmd .prompt {
     font-size: var(--font-size);
@@ -122,10 +122,9 @@ body{
 /*---------individual edits for each terminal window--------------*/  
 #pic{
     width:250px;
-    height:250px;
-    top:10vh;
-    left:10vw;
-    display:none;
+    height:288px;
+    top:40vh;
+    left:50px;
 }
 #link{
     width:250px;
@@ -186,13 +185,8 @@ body{
     display:inline-block;
     position:relative;
     padding-left:12px;
-   /* left: calc(50% - 72px);
-    transform:translateX(-50%);*/
     color:var(--light);
     cursor:default;
-}
-.minned .name{
-    left: calc(84px);
 }
 /*-------------------status bar functions-------------------*/
 .maxed{
@@ -202,8 +196,10 @@ body{
     top:3vh !important;
 }
 .minned{
-    width:20vw !important;
-    height:24px !important;
+    height:38px !important;
+}
+.minned .dither-canvas{
+    display:none;
 }
 /*---------------------------dithered------------------------*/
 canvas.dither-canvas {
@@ -213,7 +209,7 @@ canvas.dither-canvas {
 }
 /*---------media queries for a responsive layout across different screen sizes-------*/
 @media (max-width: 700px) {
-        #pic{
+    #pic{
         width:200px;
         height:200px;
         top:2vh;
