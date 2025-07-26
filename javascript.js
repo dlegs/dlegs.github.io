@@ -38,6 +38,13 @@ $(".termish").each(function(){
   $(this).find(".name").append(text);
 });
 
+$(".termish").each(function(){
+  $(this).click(function(){
+    $(this).css('z-index', 2);
+    //reset other sibling div's z-index to default value (i.e. 1)
+    $(this).siblings('.termish').css('z-index', 1);
+  });
+});
 /*---------------------status bar button functions------------*/
 
   $(".max").on("click", function (){
@@ -64,8 +71,6 @@ $(".quit").on("click", function (){
   const poi = $(this).parent().parent();
     $(poi).css("display", "none");
   });
-
-
   /*--------------------------dithering code------------------*/
 
   //-----------------------------document closing bracket; don't touch
