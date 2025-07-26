@@ -14,7 +14,7 @@ $('#terminal').terminal(
       window.open('mailto:dylan@legg.io', '_blank');
     } else if (command == 'hack'){
       term.echo("preparing to hack the mainframe ...", { typing: true, delay: 20 });
-      $('#hack').css("display", "block");
+      $('#hack').css({"display": "block", "z-index": "6"});
     }else if (command == 'git'){
       term.echo("launching GitHub for user @dlegs ...", { typing: true, delay: 20 });
       window.open('https://github.com/dlegs', '_blank');
@@ -41,9 +41,9 @@ $(".termish").each(function(){
 
 $(".termish").each(function(){
   $(this).click(function(){
-    $(this).css('z-index', 2);
+    $(this).css('z-index', 3);
     //reset other sibling div's z-index to default value (i.e. 1)
-    $(this).siblings('.termish').css('z-index', 1);
+    $(this).siblings('.termish').css('z-index', 0);
   });
 });
 /*---------------------status bar button functions------------*/

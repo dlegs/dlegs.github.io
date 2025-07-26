@@ -114,7 +114,7 @@ body{
     color:var(--light);
     box-sizing: border-box;
     border: var(--outline);
-    border-radius:8px 8px 8px 8px !important;
+    border-radius:2px 2px 2px 2px !important;
 }
 .termish p{
     padding:3px 12px 0px 12px;
@@ -144,8 +144,8 @@ body{
     z-index:5;
     width:500px;
     height:200px;
-    left: calc(50% - 250px);
-    top:calc(50% - 100px);
+    left: calc(100vw - 550px);
+    top:calc(100vh - 250px);
     display:none; 
 }
 /*----------------universal status bar styling for the terminals---------*/
@@ -194,6 +194,12 @@ body{
     height:94vh !important;
     left:3vw !important;
     top:3vh !important;
+}
+#pic.maxed{
+    width:400px !important;
+    height: 438px !important;
+    left: calc(50vw - 200px) !important;
+    top:calc(50vh - 219px) !important;
 }
 .minned{
     height:38px !important;
