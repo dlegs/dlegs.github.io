@@ -28,6 +28,7 @@ $('#terminal').terminal(
 );
 /*--------------make terms draggable n resizable-------------*/
 $( ".termish" ).draggable().resizable();
+$( "#pic" ).resizable( "disable" );
 
 /*--------------append header to all terms---------------*/
 $(".status-bar").append(
