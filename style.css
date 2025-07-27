@@ -24,13 +24,9 @@
     --blue:#3AD1FF;
     --purple:#D66DFF;
     --light: #B5FFCD;
-    --light-glow: rgba(181, 255, 205, 0.3);
     --light-med: #4B6356;
     --med:#1F2521;
-    --med-glow: rgba(31, 37, 33, 0.5);
     --dark: #161917;
-    --dark-tl: rgba(22, 25, 23, 0.6);
-    --darker:#101211;
     --outline: 1px solid var(--light);
     --font-size: 16px !important;
     --line-height:1.32 !important;
@@ -50,9 +46,39 @@ body{
     background: var(--dark);
     font-size:var(--font-size);
     line-height:var(--line-height);
+    color:var(--light) !important;
+    font-family: "Spot Mono";
+    font-size: var(--font-size);
 }
 .ui-resizable{
     position:fixed !important;
+}
+body::selection{
+    background:var(--light);
+    color:var(--dark);
+}
+/*-----------------------------loader--------------------------------*/
+#loader{
+    z-index:10;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    background:var(--dark);
+    text-align:center;
+}
+#retina, #stack, #granted{
+    position:absolute;
+    top:44%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+#stack{
+    opacity:0;
+}
+#granted{
+    opacity:0;
 }
 /*------------------edits for the actual terminal-------------------*/
 #terminal {
@@ -105,19 +131,26 @@ body{
     }
 }
 /*----------------collective edits for all terminal windows------------*/
-.termish{
-    font-family:var(--font);
-    font-size: var(--font-size);
+.termish, .dialog{
     position:fixed;
     background:var(--dark);
-    backdrop-filter: blur(12px);
     color:var(--light);
     box-sizing: border-box;
     border: var(--outline);
     border-radius:2px 2px 2px 2px !important;
 }
-.termish p{
+.termish p, .dialog p{
     padding:3px 12px 0px 12px;
+}
+/*------------------------popups / dialog-------------------------*/
+.dialog .name{
+    padding-left:0;
+}
+.dialog .quit{
+    float:right;
+}
+.dialog .status-bar{
+    padding-bottom:10px;
 }
 /*---------individual edits for each terminal window--------------*/  
 #pic{
@@ -140,13 +173,41 @@ body{
     bottom:10vh;
     display:none;
 }
-#hack{
-    z-index:5;
+#mainframe{
     width:500px;
-    height:200px;
+    height:250px;
     left: calc(100vw - 550px);
-    top:calc(100vh - 250px);
-    display:none; 
+    top:calc(100vh - 300px);
+    opacity:0;
+}
+.search{
+    padding-top:10px;
+}
+.frame-1 p{
+    top:30px;
+    width: 230px;
+    position:absolute;
+}
+.radar{
+    display:block;
+    margin-left: 288px;
+    padding: 12px 12px 12px 12px;
+}
+.frame-2{
+    position:absolute;
+    top:30px;
+}
+.frame-2 p{
+    width:420px;
+    margin-bottom:64px;
+}
+.frame-2 span{
+    transition:.2s;
+    background:var(--dark);
+    padding:8px;
+    border:var(--outline);
+    border-radius:2px;
+    margin: 0 0 0 12px;
 }
 /*----------------universal status bar styling for the terminals---------*/
 .status-bar{
@@ -156,6 +217,7 @@ body{
     margin:12px;
     margin-bottom:0px;
     border-bottom:var(--outline);
+    white-space:nowrap;
 }
 .status-bar span{
     display:inline-block;
@@ -169,24 +231,23 @@ body{
     margin-bottom:10px;
 }
 .quit, .min, .max{
-    transition:.2s;
+    transition:.4s;
 }
-.quit:hover, .min:hover, .max:hover{
-   transform:rotate(90deg);
+.quit:hover, .min:hover, .max:hover, .frame-2 span:hover{
+   background:var(--light);
+   color:var(--dark);
    cursor:pointer;
 }
 .quit{
     transform:rotate(45deg);
 }
-.quit:hover{
-    transform:rotate(135deg);
-}
 .name{
-    display:inline-block;
+    display:inline;
     position:relative;
     padding-left:12px;
     color:var(--light);
     cursor:default;
+    white-space:nowrap;
 }
 /*-------------------status bar functions-------------------*/
 .maxed{
@@ -215,28 +276,31 @@ canvas.dither-canvas {
 }
 /*---------media queries for a responsive layout across different screen sizes-------*/
 @media (max-width: 700px) {
-    #pic{
-        width:200px;
-        height:200px;
-        top:2vh;
-        left:-2vw;
-    }
     #terminal{
-        width:88vw;
-        height:88vh;
-        top:6vh;
-        left:6vw;
+        width:84vw;
+        height:84vh;
+        top:8vh;
+        left:8vw;
     }
-    #link{
-        width:250px;
-        height:350px;
-        top:44vh;
-        right:-2vw;
+    .logo img{
+        width:calc(84vw - 24px) !important;
     }
-    #docu{
-        width:92vw;
-        height:200px;
-        left:2vw;
-        bottom:2vh;
+    #mainframe{
+        height:310px !important;
+        width:210px;
+        top: calc( 100vh - 330px);
+        left: calc(100vw - 220px);
+    }
+    .frame-2 p, .frame-1 p{
+        width:184px;
+    }
+    .frame-2 p{
+        margin-bottom:110px;
+    }
+    .radar{
+        display:block;
+        margin-left: 0px;
+        margin-top:58px;
+        padding: 12px 12px 12px 12px;
     }
 }
