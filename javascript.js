@@ -14,7 +14,14 @@ $('#terminal').terminal(
       window.open('mailto:dylan@legg.io', '_blank');
     } else if (command == 'hack'){
       term.echo("preparing to hack the mainframe ...", { typing: true, delay: 20 });
-      $('#hack').css({"display": "block", "z-index": "6"});
+        $('.frame-2').css({"opacity":"0"});
+        $('.frame-1').css({"opacity":"1"});
+      $('#mainframe').css({"opacity": "1", "z-index": "5", "height":"250px"});
+      setTimeout(function() {
+        $('.frame-1').animate({opacity:'0'});
+        $('#mainframe').animate({"height": "200px"}, 300);
+        $('.frame-2').delay(100).animate({opacity:'1'});
+      }, 3000);
     }else if (command == 'git'){
       term.echo("launching GitHub for user @dlegs ...", { typing: true, delay: 20 });
       window.open('https://github.com/dlegs', '_blank');
@@ -26,26 +33,46 @@ $('#terminal').terminal(
     greetings: greet.innerHTML
   } 
 );
+
 /*--------------make terms draggable n resizable-------------*/
 $( ".termish" ).draggable().resizable();
 $( "#pic" ).resizable( "disable" );
-
+$('#mainframe').draggable();
 /*--------------append header to all terms---------------*/
-$(".status-bar").append(
+const termBar = $('.termish').find('.status-bar');
+$(termBar).append(
     "<span class='quit'>+</span> <span class='min'>-</span> <span class='max'>+</span><div class='name'></div>"
 );
+const diaBar = $('.dialog').find('.status-bar');
+$(diaBar).append(
+    "<div class='name'></div><span class='quit'>+</span>"
+);
+
 $(".termish").each(function(){
   const text = $(this).data("name");
   $(this).find(".name").append(text);
 });
+$(".dialog").each(function(){
+  const text = $(this).data("name");
+  $(this).find(".name").append(text);
+});
 
-$(".termish").each(function(){
+const window = $("#pic, #terminal, #mainframe");
+$(window).each(function(){
+  $(this).click(function(){
+    $(this).css('z-index', 3);
+    //reset other sibling div's z-index to default value (i.e. 1)
+    $(this).siblings(window).css('z-index', '0');
+  });
+});
+
+/*$(".termish").each(function(){
   $(this).click(function(){
     $(this).css('z-index', 3);
     //reset other sibling div's z-index to default value (i.e. 1)
     $(this).siblings('.termish').css('z-index', 0);
   });
-});
+});*/
 /*---------------------status bar button functions------------*/
 
   $(".max").on("click", function (){
@@ -72,7 +99,24 @@ $(".quit").on("click", function (){
   const poi = $(this).parent().parent();
     $(poi).css("display", "none");
   });
-  /*--------------------------dithering code------------------*/
+  $(".frame-2 span").on("click", function (){
+  const poi = $(this).parent().parent().parent();
+    $(poi).css("opacity", "0");
+  });
+  /*--------------------------loader------------------*/
+
+$(document).ready(function(){
+  $("#retina").animate({opacity: '1'}).delay(1000).animate({opacity: '0'});
+  $("#stack").delay(1100).animate({opacity: '1'}).delay(750).animate({opacity: '0'});
+  $("#granted").delay(2400).animate({opacity:'1'}).delay(600).animate({opacity: '0'});
+  $("#loader").delay(3200).animate({opacity:'0'});
+});
+
+const loader = $("#loader");
+setTimeout(function() {loader.css({"display": "none"})}, 3300);
+
+//turn off the above function and turn on the below function to hide the loading effect while editing the site
+/*$("#loader").css({"display":"none"});*/
 
   //-----------------------------document closing bracket; don't touch
 });

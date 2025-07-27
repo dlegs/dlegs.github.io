@@ -22,29 +22,48 @@
 
     <body>
 
-        <img class="dither" data-threshold='1' data-dot-size='1' style="width: 150px" data-dither="stucki" src="img/icon-04.svg">
-        <img class="dither" data-threshold='1' data-dot-size='1' style="width: 150px" data-dither="stucki" src="img/icon-05.svg">
-
+    <section id="loader">
+        <div id="retina">
+            <video class="dither" muted playsinline autoplay loop data-threshold='0' data-dot-size='1' style="width: 190px" data-dither="atkinson" src="img/Retina.mp4"></video>
+            <p>Scanning retina ...</p>
+        </div>
+        <div id="stack">
+            <video class="dither" muted playsinline autoplay loop data-threshold='0' data-dot-size='1' style="width: 190px" data-dither="atkinson" src="img/Stack.mp4"></video>
+            <p>Building code stack ...</p>
+        </div>
+        <div id="granted">
+            <p>[access granted]</p>
+        </div>
+    </section>  
+       
      <!------------one (1) pic of dylan j leggio esq-------->
         <section id="pic" data-name="legg.io / headshot" class="termish">
             <div class="status-bar"></div>
-            <div class="headshot"><img class="dither" data-threshold='1.5' data-dot-size='1' style="width: 100%" data-dither="stucki" src="img/IMG_7503.png"></div>
+            <div class="headshot"><img class="dither" data-threshold='.8' data-dot-size='1' style="width: 100%" data-dither="atkinson" src="img/IMG_7503.png"></div>
         </section>
 
     <!------------a 'hack the mainframe' dialogue-------->
-        <section id="hack" data-name="legg.io / hack" class="termish">
-            <div class="status-bar"></div>
-            <p>Searching for vulnerabilities ...</p>
+         <section id="mainframe" data-name='legg.io / hack' class='dialog'>
+            <div class='status-bar'></div>
+            <div class="frame-1">
+                <p>Searching for vulnerabilities ...</p>
+                <div class="radar"><video class='dither' muted playsinline autoplay loop data-threshold='0' data-dot-size='1' style="width: 186px" data-dither='fs' src='img/Radar.mp4'></video></div>
+            </div>
+            <div class="frame-2" style="opacity:0">
+                <p>Nice try, but this mainframe is secure. Maybe you should hire a penetration tester?</p>
+                <div class=buttons><span>Ok</span><span>Nice</span></div>
+            </div>
         </section>
 
      <!--the main terminal window, where the user interacts with the site-->
         <section id="terminal" class="termish" data-name="legg.io / terminal">
             <div class="status-bar"></div>
-            <div class="logo"><img class="dither" data-threshold='.17' data-dot-size='1' style="width: calc(66vw - 24px)" data-dither="stucki" src="img/legg.svg"></div>
+            <div class="logo"><img class="dither" data-threshold='.17' data-dot-size='1' style="width: calc(66vw - 24px)" data-dither="atkinson" src="img/legg.svg"></div>
         </section>
 
     <!--------------------templates for the terminal------------------->
-<template id="greet">Type a command, then press enter.
+<template id="greet">Security engineer currently @ Google. 
+To learn more, type a command, then press enter.
 resume      download resume
 git         access GitHub
 contact     initialize email
