@@ -18,9 +18,9 @@ $('#terminal').terminal(
         $('.frame-1').css({"opacity":"1"});
       $('#mainframe').css({"opacity": "1", "z-index": "5", "height":"250px"});
       setTimeout(function() {
-        $('.frame-1').animate({opacity:'0'});
-        $('#mainframe').animate({"height": "200px"}, 300);
-        $('.frame-2').delay(100).animate({opacity:'1'});
+        $('.frame-1').animate({opacity:'0'}, 50);
+        $('#mainframe').animate({"height": "200px"}, 50);
+        $('.frame-2').delay(100).animate({opacity:'1'}, 50);
       }, 3000);
     }else if (command == 'git'){
       term.echo("launching GitHub for user @dlegs ...", { typing: true, delay: 20 });
@@ -106,14 +106,14 @@ $(".quit").on("click", function (){
   /*--------------------------loader------------------*/
 
 $(document).ready(function(){
-  $("#retina").animate({opacity: '1'}).delay(1000).animate({opacity: '0'});
-  $("#stack").delay(1100).animate({opacity: '1'}).delay(750).animate({opacity: '0'});
-  $("#granted").delay(2400).animate({opacity:'1'}).delay(600).animate({opacity: '0'});
-  $("#loader").delay(3200).animate({opacity:'0'});
+  $("#retina").animate({opacity: '1'}).delay(1000).animate({opacity: '0'},50);
+  $("#stack").delay(1200).animate({opacity: '1'}).delay(750).animate({opacity: '0'},50);
+  $("#granted").delay(2250).animate({opacity:'1'}).delay(1200).animate({opacity: '0'},50);
+  $("#loader").delay(3600).animate({opacity:'0'},50);
 });
 
 const loader = $("#loader");
-setTimeout(function() {loader.css({"display": "none"})}, 3300);
+setTimeout(function() {loader.css({"display": "none"})}, 3700);
 
 //turn off the above function and turn on the below function to hide the loading effect while editing the site
 /*$("#loader").css({"display":"none"});*/
