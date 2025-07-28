@@ -1,30 +1,33 @@
 $(document).ready(function () {
 
 /*---------------initialize terminal---------------*/
-const grtngs = $('#greetings');
 $('#terminal').terminal(
   function(command, term) {
     if (command == 'test') {
-      term.echo("you just typed 'test'", { typing: true, delay: 20 });
+      term.echo("you've just typed 'test'", { typing: true, delay: 20 });
     } else if (command == 'resume') {
-      term.echo("accessing resume ...");
       window.open('https://github.com/dlegs/personal-website/blob/main/asset/resume.pdf', '_blank');
+      term.echo("accessing resume in external window ...");
     } else if (command == 'contact'){
-      term.echo("initializing message to dylan[at]legg.io ...", { typing: true, delay: 20 });
       window.open('mailto:dylan@legg.io', '_blank');
+      term.echo("initializing external message to dylan[at]legg.io ...", { typing: true, delay: 20 });
+    }else if (command == 'git'){
+      window.open('https://github.com/dlegs', '_blank');
+      term.echo("launching GitHub for user @dlegs ...", { typing: true, delay: 20 });
     } else if (command == 'hack'){
       term.echo("preparing to hack the mainframe ...", { typing: true, delay: 20 });
+      $('#mainframe').css({"opacity": "1", "z-index": "5", "height":"250px"});
         $('.frame-2').css({"opacity":"0"});
         $('.frame-1').css({"opacity":"1"});
-      $('#mainframe').css({"opacity": "1", "z-index": "5", "height":"250px"});
-      setTimeout(function() {
-        $('.frame-1').animate({opacity:'0'}, 50);
-        $('#mainframe').animate({"height": "200px"}, 50);
-        $('.frame-2').delay(100).animate({opacity:'1'}, 50);
-      }, 3000);
-    }else if (command == 'git'){
-      term.echo("launching GitHub for user @dlegs ...", { typing: true, delay: 20 });
-      window.open('https://github.com/dlegs', '_blank');
+        $('.frame-1').find('video').get(0).play();
+        setTimeout(function () {
+          $('.frame-1').animate({"opacity":"0"}, 50);
+          $('#mainframe').delay(50).animate({"height": "200px"}, 50);
+          $('.frame-2').delay(50).animate({'opacity': '1'},50);
+        }, 1025);
+        setTimeout(function(){
+            term.echo("error: no vulnerabilities found", { typing: true, delay: 20 });
+        }, 1400);
     }else {
       term.echo('unknown command', { typing: true, delay: 20 });
     }
@@ -38,6 +41,8 @@ $('#terminal').terminal(
 $( ".termish" ).draggable().resizable();
 $( "#pic" ).resizable( "disable" );
 $('#mainframe').draggable();
+$('.decoy').draggable("disable").resizable("disable");
+
 /*--------------append header to all terms---------------*/
 const termBar = $('.termish').find('.status-bar');
 $(termBar).append(
@@ -57,22 +62,14 @@ $(".dialog").each(function(){
   $(this).find(".name").append(text);
 });
 
-const window = $("#pic, #terminal, #mainframe");
-$(window).each(function(){
+const wind = $("#pic, #terminal, #mainframe");
+$(wind).each(function(){
   $(this).click(function(){
     $(this).css('z-index', 3);
     //reset other sibling div's z-index to default value (i.e. 1)
     $(this).siblings(window).css('z-index', '0');
   });
 });
-
-/*$(".termish").each(function(){
-  $(this).click(function(){
-    $(this).css('z-index', 3);
-    //reset other sibling div's z-index to default value (i.e. 1)
-    $(this).siblings('.termish').css('z-index', 0);
-  });
-});*/
 /*---------------------status bar button functions------------*/
 
   $(".max").on("click", function (){
@@ -97,26 +94,47 @@ $(".min").on("click",function(){
   });
 $(".quit").on("click", function (){
   const poi = $(this).parent().parent();
-    $(poi).css("display", "none");
+    $(poi).css("opacity", "0");
   });
   $(".frame-2 span").on("click", function (){
   const poi = $(this).parent().parent().parent();
     $(poi).css("opacity", "0");
   });
+  /*----------------sizing terminal scroller to the space avail------*/
+  const height = $('#terminal').height() - $('.logo').height() - 60 + 'px';
+  $('.terminal-scroller').height(height);
+
+  $('#terminal').resize(function(){
+      const height = $('#terminal').height() - $('.logo').height() - 60 + 'px';
+      $('.terminal-scroller').height(height);
+  });
+
   /*--------------------------loader------------------*/
 
-$(document).ready(function(){
-  $("#retina").animate({opacity: '1'}).delay(1000).animate({opacity: '0'},50);
-  $("#stack").delay(1200).animate({opacity: '1'}).delay(750).animate({opacity: '0'},50);
-  $("#granted").delay(2250).animate({opacity:'1'}).delay(1200).animate({opacity: '0'},50);
-  $("#loader").delay(3600).animate({opacity:'0'},50);
-});
-
+const retinaVid = $('#retina').find('video');
+const stackVid = $('#stack').find('video');
+const grantedVid=$('#granted').find('video');
 const loader = $("#loader");
-setTimeout(function() {loader.css({"display": "none"})}, 3700);
+
+$(document).ready(function(){
+  retinaVid.get(0).play();
+  setTimeout(function () {
+        $('#retina').empty();
+        $('#stack').css({'opacity': '1'});
+        $(stackVid).get(0).play();
+    }, 1160);
+  setTimeout(function () {
+        $('#stack').empty();
+        $('#granted').css({'opacity': '1'});
+        $(grantedVid).get(0).play();
+    }, 2320);
+    setTimeout(function() {loader.css({"display": "none"})}, 3320);
+});
 
 //turn off the above function and turn on the below function to hide the loading effect while editing the site
 /*$("#loader").css({"display":"none"});*/
+
+/*-----------------typewriter effect s-------------*/
 
   //-----------------------------document closing bracket; don't touch
 });
