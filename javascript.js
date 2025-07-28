@@ -39,6 +39,7 @@ $('#terminal').terminal(
 
 /*--------------make terms draggable n resizable-------------*/
 $( ".termish" ).draggable().resizable();
+$(".termish").resizable("disable");
 $( "#pic" ).resizable( "disable" );
 $('#mainframe').draggable();
 $('.decoy').draggable("disable").resizable("disable");
