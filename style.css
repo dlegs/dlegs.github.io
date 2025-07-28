@@ -321,14 +321,10 @@ canvas.dither-canvas {
 /*---------media queries for a responsive layout across different screen sizes-------*/
 @media (max-width: 700px) {
     #terminal{
-        width:84vw;
-        height:84vh;
-        top:8vh;
+        width:84vw !important;
+        height:84vh !important;
+        top:50vw;
         left:8vw;
-    }
-    .terminal-scroller{
-        max-height:66vh !important;
-        scrollbar-color: var(--med) !important;
     }
     .logo img{
         width:calc(84vw - 24px) !important;
@@ -344,7 +340,7 @@ canvas.dither-canvas {
     }
     #pic{
         left:8px;
-        top: calc(100vh - 296px);
+        bottom:12px;
     }
     .frame-2 p{
         margin-bottom:110px;
