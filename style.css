@@ -24,16 +24,15 @@
     --blue:#3AD1FF;
     --purple:#D66DFF;
     --light: #B5FFCD;
-    --light-med: #4B6356;
-    --med:#1F2521;
+    --med:#39473F;
     --dark: #161917;
     --outline: 1px solid var(--light);
     --font-size: 16px !important;
     --line-height:1.32 !important;
     --font: "Spot Mono", monospace;
 
-    --dither-color-1: #161917;
-    --dither-color-2: #B5FFCD;
+    --dither-color-1: var(--dark);
+    --dither-color-2: var(--light);
 }
 /*-------------------------global edits for the site-------------------*/
 body{
@@ -70,7 +69,7 @@ body::selection{
 }
 #retina, #stack, #granted{
     position:absolute;
-    top:44%;
+    top:48%;
     left:50%;
     transform:translate(-50%, -50%);
 }
@@ -81,27 +80,33 @@ body::selection{
     opacity:0;
 }
 /*------------------edits for the actual terminal-------------------*/
-#terminal {
-    --animation: terminal-underline;
+#terminal{
+    position:absolute;
     background:var(--dark) !important;
-    --color: var(--light) !important;
-    width:66vw;
-    height:66vh;
+    color:var(--light) !important;
+    width:66vw !important;
+    height:66vh !important;
     top:17vh;
     left:17vw;
     transition: transform .5s;
-    box-sizing:border-box;
     z-index:2;
+    max-height:66vh !important;
+    --animation: terminal-underline;
 }
-  .terminal, .cmd, .terminal .terminal-output div div, .cmd .prompt {
+.terminal{
+    --base-background:var(--dark) !important;
+    --base-color:var(--light) !important;
+}
+
+.terminal, .cmd, .terminal .terminal-output div div, .cmd .prompt {
     font-size: var(--font-size);
     line-height: 24px;
     }
 .terminal-scroller{
     padding-top:0px !important;
+    scrollbar-color:var(--light) var(--dark) !important;
 }
 .cmd-editable, .terminal .terminal-fill, .terminal-scroller {
-    /* [DEFAULT] padding: calc(1px * var(--padding, 10) / var(--pixel-density, 1));*/
     padding: 0px 12px 0px 12px !important;
 }
 .logo{
@@ -118,7 +123,6 @@ body::selection{
 @supports (--css:variables) {
     .cmd, .cmd div, .cmd span[data-text]:not(.cmd-inverted):not(.token):not(.emoji), .terminal, .terminal-output>:not(.raw) a, .terminal-output>:not(.raw) div, .terminal-output>:not(.raw) span[data-text]:not(.token):not(.inverted):not(.terminal-inverted):not(.cmd-inverted):not(.terminal-error):not(.emoji), .terminal.external [data-text]{
         background: transparent;
-        color:var(--light);
     }
     .terminal, .terminal-output>:not(.raw) a, .terminal-output>:not(.raw) div, .terminal-output>:not(.raw) span{
         font-size:var(--font-size) !important;
@@ -152,6 +156,46 @@ body::selection{
 .dialog .status-bar{
     padding-bottom:10px;
 }
+/*---------------------decoy-------------------*/
+.decoy{
+    right:50px;
+    width:40vw;
+    height:40vh;
+    z-index:-2 !important;
+    top:50px;
+}
+.decoy, .decoy .status-bar span{
+    color: var(--med);
+    border: 1px solid var(--med);
+}
+.decoy .status-bar{
+    color:var(--med);
+    border-bottom: 1px solid var(--med);
+}
+/*-----------------decoy desktop icons------------*/
+.folder{
+   position:absolute;
+   color:var(--med);
+   top:12px;
+   left:12px;
+   font-size:12px;
+   text-align:center;
+   z-index:-1 !important;
+}
+.folder img{
+    width:70px;
+    padding-bottom:4px;
+}
+.folder span{
+    cursor:default;
+}
+.folder:nth-of-type(2){
+    top:108px;
+}
+.folder:nth-of-type(3){
+    top:calc(100vh - 96px);
+}
+
 /*---------individual edits for each terminal window--------------*/  
 #pic{
     width:250px;
@@ -282,17 +326,25 @@ canvas.dither-canvas {
         top:8vh;
         left:8vw;
     }
+    .terminal-scroller{
+        max-height:66vh !important;
+        scrollbar-color: var(--med) !important;
+    }
     .logo img{
         width:calc(84vw - 24px) !important;
     }
     #mainframe{
         height:310px !important;
         width:210px;
-        top: calc( 100vh - 330px);
+        top: calc( 100vh - 340px);
         left: calc(100vw - 220px);
     }
     .frame-2 p, .frame-1 p{
         width:184px;
+    }
+    #pic{
+        left:8px;
+        top: calc(100vh - 296px);
     }
     .frame-2 p{
         margin-bottom:110px;
@@ -302,5 +354,10 @@ canvas.dither-canvas {
         margin-left: 0px;
         margin-top:58px;
         padding: 12px 12px 12px 12px;
+    }
+    .decoy{
+        top:12px;
+        right:12px;
+        width:70vw;
     }
 }

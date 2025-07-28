@@ -12,7 +12,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/js/jquery.terminal.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/css/jquery.terminal.min.css" rel="stylesheet"/>
 
-        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
         <script src="dither.js"></script>
         <title>Dylan Leggio</title>
         <link rel="shortcut icon" type="image/png" href="assets/link-to-favicon"/>
@@ -24,12 +24,12 @@
 
     <section id="loader">
         <div id="retina">
-            <video class="dither" muted playsinline autoplay loop data-threshold='0' data-dot-size='1' style="width: 190px" data-dither="atkinson" src="img/Retina.mp4"></video>
+            <video class="dither" muted playsinline no-controls data-threshold='0' data-dot-size='1' style="width: 190px" data-dither="atkinson" src="img/Retina.mp4"></video>
             <p>Scanning retina ...</p>
         </div>
         <div id="stack">
-            <video class="dither" muted playsinline autoplay loop data-threshold='0' data-dot-size='1' style="width: 190px" data-dither="atkinson" src="img/Stack.mp4"></video>
-            <p>Building code stack ...</p>
+            <video class="dither" muted playsinline no-controls data-threshold='0' data-dot-size='1' style="width: 190px" data-dither="atkinson" src="img/Stack.mp4"></video>
+            <p>Decrypting code stack ...</p>
         </div>
         <div id="granted">
             <p>[access granted]</p>
@@ -47,7 +47,7 @@
             <div class='status-bar'></div>
             <div class="frame-1">
                 <p>Searching for vulnerabilities ...</p>
-                <div class="radar"><video class='dither' muted playsinline autoplay loop data-threshold='0' data-dot-size='1' style="width: 186px" data-dither='fs' src='img/Radar.mp4'></video></div>
+                <div class="radar"><video class='dither' muted playsinline no-controls data-threshold='0' data-dot-size='1' style="width: 186px" data-dither='fs' src='img/Radar.mp4'></video></div>
             </div>
             <div class="frame-2" style="opacity:0">
                 <p>Nice try, but this mainframe is secure. Maybe you should hire a penetration tester?</p>
@@ -56,10 +56,36 @@
         </section>
 
      <!--the main terminal window, where the user interacts with the site-->
-        <section id="terminal" class="termish" data-name="legg.io / terminal">
+        <section class="termish" id="terminal" data-name="legg.io / terminal">
             <div class="status-bar"></div>
             <div class="logo"><img class="dither" data-threshold='.17' data-dot-size='1' style="width: calc(66vw - 24px)" data-dither="atkinson" src="img/legg.svg"></div>
         </section>
+
+     <!------a decorative terminal window that is purely to furnish the page---->
+        <section class="decoy termish" data-name="">
+            <div class="status-bar"></div>
+        </section>
+
+    <!-----------------------------desktop icons---------------------------------->
+    <div class="folder">
+        <img src="img/fold.svg">
+        <br><span>01_scripts</span>
+    </div>
+    <div class="folder">
+        <img src="img/fold.svg">
+        <br><span>02_repo</span>
+    </div>
+     <div class="folder">
+        <img src="img/fold.svg">
+        <br><span>03_util</span>
+    </div>
+
+    <!--------------------typing content to be typed into its <p> element------->
+        <div id="typing-text" style="display:none">
+            <span class="retina-text" data-speed="140"></span>
+            <span class="stack-text" data-speed="80"></span>
+            <span class="granted-text" data-speed="600"></span>
+        </div>
 
     <!--------------------templates for the terminal------------------->
 <template id="greet">Security engineer currently @ Google. 
@@ -69,7 +95,6 @@ git         access GitHub
 contact     initialize email
 hack        hack the mainframe 
         </template>
-
 
     <!--------------scripts------------------->
         <script src="javascript.js"></script>
@@ -82,6 +107,5 @@ hack        hack the mainframe
             integrity="sha256-Fb0zP4jE3JHqu+IBB9YktLcSjI1Zc6J2b6gTjB0LpoM="
             crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/js/jquery.terminal.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/jcubic/static/js/wcwidth.js"></script>
     </body>
 </html>
