@@ -12,6 +12,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/js/jquery.terminal.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/css/jquery.terminal.min.css" rel="stylesheet"/>
 
+        <!----------------links for typewriter effect----------------------->
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
         <script src="dither.js"></script>
         <title>Dylan Leggio</title>
@@ -24,15 +26,15 @@
 
     <section id="loader">
         <div id="retina">
-            <video class="dither" muted playsinline no-controls data-threshold='0' data-dot-size='1' style="width: 190px" data-dither="atkinson" src="img/Retina.mp4"></video>
-            <p>Scanning retina ...</p>
+            <video class="dither" muted playsinline no-controls data-threshold='0' data-dot-size='1' style="width: 190px" preload="auto" data-dither="atkinson" src="img/Retina.mp4"></video>
+            <p id="retina-typed"></p>
         </div>
         <div id="stack">
-            <video class="dither" muted playsinline no-controls data-threshold='0' data-dot-size='1' style="width: 190px" data-dither="atkinson" src="img/Stack.mp4"></video>
-            <p>Decrypting code stack ...</p>
+            <video class="dither" muted playsinline no-controls data-threshold='0' data-dot-size='1' style="width: 190px" preload="auto" data-dither="atkinson" src="img/Stack.mp4"></video>
+            <p id="stack-typed"></p>
         </div>
         <div id="granted">
-            <p>[access granted]</p>
+            <p id="granted-typed"></p>
         </div>
     </section>  
        
@@ -47,7 +49,7 @@
             <div class='status-bar'></div>
             <div class="frame-1">
                 <p>Searching for vulnerabilities ...</p>
-                <div class="radar"><video class='dither' muted playsinline no-controls data-threshold='0' data-dot-size='1' style="width: 186px" data-dither='fs' src='img/Radar.mp4'></video></div>
+                <div class="radar"><video class='dither' muted playsinline no-controls loop data-threshold='0' data-dot-size='1' style="width: 186px" data-dither='fs' src='img/Radar.mp4'></video></div>
             </div>
             <div class="frame-2" style="opacity:0">
                 <p>Nice try, but this mainframe is secure. Maybe you should hire a penetration tester?</p>
@@ -79,13 +81,6 @@
         <img src="img/fold.svg">
         <br><span>03_util</span>
     </div>
-
-    <!--------------------typing content to be typed into its <p> element------->
-        <div id="typing-text" style="display:none">
-            <span class="retina-text" data-speed="140"></span>
-            <span class="stack-text" data-speed="80"></span>
-            <span class="granted-text" data-speed="600"></span>
-        </div>
 
     <!--------------------templates for the terminal------------------->
 <template id="greet">Security engineer currently @ Google. 
