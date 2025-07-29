@@ -1,5 +1,23 @@
 $(document).ready(function () {
 
+function updateLogoSize() {
+  const $logoImg = $('.logo').find('img');
+  const logoContainer = $('#terminal');
+
+  if (!$logoImg.length || !logoContainer.length) return;
+
+  const containerWidth = logoContainer.width() - 24; // match your horizontal padding
+  const newStyle = `width: ${containerWidth}px; height: auto; display: block;`;
+
+  $logoImg.attr('style', newStyle);
+}
+
+$(window).on('resize', updateLogoSize);
+$(document).ready(function () {
+  updateLogoSize();
+  renderDither(el, canvas);
+});
+
 /*---------------initialize terminal---------------*/
 $('#terminal').terminal(
   function(command, term) {
@@ -40,8 +58,8 @@ $('#terminal').terminal(
 );
 /*--------------make terms draggable n resizable-------------*/
 $( ".termish" ).draggable().resizable();
+$( ".dialog" ).draggable();
 $( "#pic" ).resizable( "disable" );
-$('#mainframe').draggable();
 $('.decoy').draggable("disable").resizable("disable");
 
 /*--------------append header to all terms---------------*/
@@ -102,14 +120,19 @@ $(".quit").on("click", function (){
     $(poi).css("opacity", "0");
   });
   /*----------------sizing terminal scroller to the space avail------*/
-  const height = $('#terminal').height() - $('.logo').height() - 60 + 'px';
-  $('.terminal-scroller').height(height);
-
-  $('#terminal').resize(function(){
-      const height = $('#terminal').height() - $('.logo').height() - 60 + 'px';
-      $('.terminal-scroller').height(height);
+/*function scrollerHeight() {
+   let height = $('#terminal').height() - $('.logo').height() - 60 + 'px';
+   $('.terminal-scroller').height(height);
+}
+  $(document).ready(function(){
+      scrollerHeight();
+    });
+  $(window).resize(function(){
+      scrollerHeight();
   });
-
+  $('.termish').resize(function(){
+     scrollerHeight();
+  });*/
   /*--------------------------loader------------------*/
 
 const retinaVid = $('#retina').find('video');
