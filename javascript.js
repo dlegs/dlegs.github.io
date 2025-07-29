@@ -14,20 +14,22 @@ $('#terminal').terminal(
     }else if (command == 'git'){
       window.open('https://github.com/dlegs', '_blank');
       term.echo("launching GitHub for user @dlegs ...", { typing: true, delay: 20 });
-    } else if (command == 'hack'){
+    } else if (command == 'hack'){;
+      term.pause()
       term.echo("preparing to hack the mainframe ...", { typing: true, delay: 20 });
       $('#mainframe').css({"opacity": "1", "z-index": "5", "height":"250px"});
         $('.frame-2').css({"opacity":"0"});
         $('.frame-1').css({"opacity":"1"});
         $('.frame-1').find('video').get(0).play();
         setTimeout(function () {
-          $('.frame-1').animate({"opacity":"0"}, 50);
-          $('#mainframe').delay(50).animate({"height": "200px"}, 50);
-          $('.frame-2').delay(50).animate({'opacity': '1'},50);
-        }, 1025);
+          $('.frame-1').animate({"opacity":"0"}, 100);
+          $('#mainframe').delay(100).animate({"height": "200px"}, 100);
+          $('.frame-2').delay(150).animate({'opacity': '1'},100);
+        }, 3050);
         setTimeout(function(){
             term.echo("error: no vulnerabilities found", { typing: true, delay: 20 });
-        }, 1400);
+            term.resume();
+        }, 3500);
     }else {
       term.echo('unknown command', { typing: true, delay: 20 });
     }
@@ -36,10 +38,8 @@ $('#terminal').terminal(
     greetings: greet.innerHTML
   } 
 );
-
 /*--------------make terms draggable n resizable-------------*/
 $( ".termish" ).draggable().resizable();
-$(".termish").resizable("disable");
 $( "#pic" ).resizable( "disable" );
 $('#mainframe').draggable();
 $('.decoy').draggable("disable").resizable("disable");
@@ -114,28 +114,42 @@ $(".quit").on("click", function (){
 
 const retinaVid = $('#retina').find('video');
 const stackVid = $('#stack').find('video');
-const grantedVid=$('#granted').find('video');
 const loader = $("#loader");
 
 $(document).ready(function(){
   retinaVid.get(0).play();
+      const typeRetina = new Typed('#retina-typed', {
+      strings: ['Scanning retina ...'],
+      typeSpeed: 15,
+      showCursor: false
+    });
   setTimeout(function () {
         $('#retina').empty();
         $('#stack').css({'opacity': '1'});
         $(stackVid).get(0).play();
     }, 1160);
+    const typeStack = new Typed('#stack-typed', {
+      strings: ['Decrypting code stack ...'],
+      typeSpeed: 15,
+      showCursor: false,
+      startDelay:1160
+    });
   setTimeout(function () {
         $('#stack').empty();
         $('#granted').css({'opacity': '1'});
-        $(grantedVid).get(0).play();
     }, 2320);
-    setTimeout(function() {loader.css({"display": "none"})}, 3320);
+    const typeGranted = new Typed('#granted-typed', {
+      strings: ['[access granted]'],
+      typeSpeed: 15,
+      showCursor: false,
+      startDelay:2320
+    });
+    setTimeout(function() {loader.css({"display": "none"})}, 3500);
 });
 
 //turn off the above function and turn on the below function to hide the loading effect while editing the site
 /*$("#loader").css({"display":"none"});*/
 
-/*-----------------typewriter effect s-------------*/
 
   //-----------------------------document closing bracket; don't touch
 });

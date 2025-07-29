@@ -69,11 +69,17 @@ body::selection{
     margin:0;
     padding:0;
 }
+#loader p{
+    width:600px;
+}
 #retina, #stack, #granted{
     position:absolute;
     top:48%;
     left:50%;
     transform:translate(-50%, -50%);
+}
+#retina p, #stack p, #granted p{
+    height:15px;
 }
 #stack{
     opacity:0;
@@ -327,9 +333,6 @@ canvas.dither-canvas {
         height:72vh !important;
         top: 14vw;
         left:4vw;
-    }
-    #loader{
-        width:
     }
     .logo img{
         width:calc(84vw - 24px) !important;
