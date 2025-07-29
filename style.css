@@ -66,6 +66,8 @@ body::selection{
     position:absolute;
     background:var(--dark);
     text-align:center;
+    margin:0;
+    padding:0;
 }
 #retina, #stack, #granted{
     position:absolute;
@@ -321,10 +323,13 @@ canvas.dither-canvas {
 /*---------media queries for a responsive layout across different screen sizes-------*/
 @media (max-width: 700px) {
     #terminal{
-        width:84vw !important;
-        height:84vh !important;
-        top:50vw;
-        left:8vw;
+        width:92vw !important;
+        height:72vh !important;
+        top: 14vw;
+        left:4vw;
+    }
+    #loader{
+        width:
     }
     .logo img{
         width:calc(84vw - 24px) !important;
@@ -339,8 +344,8 @@ canvas.dither-canvas {
         width:184px;
     }
     #pic{
-        left:8px;
-        bottom:12px;
+        left:-56px;
+        top:calc(100vh - 300px);
     }
     .frame-2 p{
         margin-bottom:110px;
@@ -353,7 +358,10 @@ canvas.dither-canvas {
     }
     .decoy{
         top:12px;
-        right:12px;
+        right:8px;
         width:70vw;
+    }
+    .folder{
+        left:0px;
     }
 }
