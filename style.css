@@ -92,13 +92,16 @@ body::selection{
     position:absolute;
     background:var(--dark) !important;
     color:var(--light) !important;
-    width:66vw !important;
-    height:66vh !important;
+
+    display: flex;
+    flex-direction: column;
+
+    width:66vw;
+    height:66vh;
     top:17vh;
     left:17vw;
     transition: transform .5s;
-    z-index:2;
-    max-height:66vh !important;
+    z-index:1;
     --animation: terminal-underline;
 }
 .terminal{
@@ -113,15 +116,22 @@ body::selection{
 .terminal-scroller{
     padding-top:0px !important;
     scrollbar-color:var(--light) var(--dark) !important;
+
+    flex: 1 1 auto; /* takes all remaining height */
+    overflow-y: auto;
 }
 .cmd-editable, .terminal .terminal-fill, .terminal-scroller {
     padding: 0px 12px 0px 12px !important;
 }
 .logo{
     margin:12px 12px 6px 12px;
+
+    flex: 0 0 auto; /* fixed height */
 }
-#greet{
-    --animation: typing;
+.logo img {
+  /*width: calc(100% - 24px);*/
+  height: auto; 
+  display: block;
 }
 .terminal-wrapper{
     --background: transparent;
@@ -327,16 +337,14 @@ canvas.dither-canvas {
   display: block;
 }
 /*---------media queries for a responsive layout across different screen sizes-------*/
-@media (max-width: 700px) {
+/*@media (max-width: 700px) {
     #terminal{
         width:92vw !important;
         height:72vh !important;
         top: 14vw;
         left:4vw;
     }
-    .logo img{
-        width:calc(84vw - 24px) !important;
-    }
+
     #mainframe{
         height:310px !important;
         width:210px;
@@ -366,5 +374,40 @@ canvas.dither-canvas {
     }
     .folder{
         left:0px;
+    }
+}*/
+@media (max-width: 700px) {
+    #terminal{
+        width:100vw !important;
+        height:100vh !important;
+        top: 0vh;
+        left:0vw;
+    }
+    #pic{
+        display:none;
+    }
+    .folder{
+        display:none;
+    }
+    #mainframe{
+        height:310px !important;
+        width:210px;
+        top: calc( 100vh - 340px);
+        left: calc(100vw - 220px);
+    }
+    .frame-2 p, .frame-1 p{
+        width:184px;
+    }
+    .frame-2 p{
+        margin-bottom:110px;
+    }
+    .radar{
+        display:block;
+        margin-left: 0px;
+        margin-top:58px;
+        padding: 12px 12px 12px 12px;
+    }
+    .decoy{
+        display:none;
     }
 }
