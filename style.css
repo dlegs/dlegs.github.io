@@ -39,6 +39,8 @@ body{
     position:absolute;
     top:0px;
     left:0px;
+    padding:0;
+    margin:0;
     width:100vw;
     height:100vh;
     overflow:hidden;
@@ -59,10 +61,10 @@ body::selection{
 /*-----------------------------loader--------------------------------*/
 #loader{
     z-index:10;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
+    top:-1vh;
+    left:-1vw;
+    width:102vw;
+    height:102vh;
     position:absolute;
     background:var(--dark);
     text-align:center;
@@ -70,16 +72,14 @@ body::selection{
     padding:0;
 }
 #loader p{
-    width:600px;
+    width:100vw;
+    height:15px;
 }
 #retina, #stack, #granted{
-    position:absolute;
+    position:relative;
     top:48%;
     left:50%;
     transform:translate(-50%, -50%);
-}
-#retina p, #stack p, #granted p{
-    height:15px;
 }
 #stack{
     opacity:0;
@@ -324,6 +324,9 @@ body::selection{
     left: calc(50vw - 200px) !important;
     top:calc(50vh - 219px) !important;
 }
+#pic.maxed img{
+    width: 400px;
+}
 .minned{
     height:38px !important;
 }
@@ -376,13 +379,15 @@ canvas.dither-canvas {
         left:0px;
     }
 }*/
-@media (max-width: 700px) {
+@media screen and (max-width: 700px) {
     #terminal{
         width:100vw !important;
         height:100vh !important;
         top: 0vh;
         left:0vw;
+        border:0px;
     }
+
     #pic{
         display:none;
     }
@@ -391,23 +396,35 @@ canvas.dither-canvas {
     }
     #mainframe{
         height:310px !important;
-        width:210px;
-        top: calc( 100vh - 340px);
-        left: calc(100vw - 220px);
+        width:90vw;
+        bottom:5vh;
+        top: auto;
+        left: 5vw;
     }
-    .frame-2 p, .frame-1 p{
+
+    .frame-1 p{
         width:184px;
     }
     .frame-2 p{
-        margin-bottom:110px;
+        margin-bottom:30px;
+        width: calc(90vw - 24px);
     }
     .radar{
-        display:block;
-        margin-left: 0px;
-        margin-top:58px;
+        display:inline-block;
         padding: 12px 12px 12px 12px;
+        margin-left: 0;
+        margin-top:50px;
     }
     .decoy{
         display:none;
     }
+    .logo{
+        padding-bottom:6px;
+    }
+    .min:hover, .max:hover, .quit:hover{
+        cursor:default;
+        background:var(--dark);
+        color:var(--light);
+    }
+
 }
