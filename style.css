@@ -220,6 +220,7 @@ body::selection{
     height:288px;
     top:40vh;
     left:50px;
+    overflow:hidden;
 }
 #link{
     width:250px;
@@ -387,6 +388,9 @@ canvas.dither-canvas {
         left:0vw;
         border:0px;
     }
+    .radar{
+        margin-left:calc(100% - 210px);
+    }
 
     #pic{
         display:none;
@@ -395,25 +399,8 @@ canvas.dither-canvas {
         display:none;
     }
     #mainframe{
-        height:310px !important;
         width:90vw;
-        bottom:5vh;
-        top: auto;
         left: 5vw;
-    }
-
-    .frame-1 p{
-        width:184px;
-    }
-    .frame-2 p{
-        margin-bottom:30px;
-        width: calc(90vw - 24px);
-    }
-    .radar{
-        display:inline-block;
-        padding: 12px 12px 12px 12px;
-        margin-left: 0;
-        margin-top:50px;
     }
     .decoy{
         display:none;
@@ -425,6 +412,9 @@ canvas.dither-canvas {
         cursor:default;
         background:var(--dark);
         color:var(--light);
+    }
+    .max, .min, .quit{
+        pointer-events: none !important;
     }
 
 }

@@ -56,7 +56,16 @@ $(document).ready(function () {
   updateLogoSize();
 });
 
-
+/*--------update headshot width--------*/
+function updateImageWidth() {
+  const $pic = $('#pic');
+  const $img = $pic.find('img');
+  if ($pic.hasClass('maxed')) {
+    $img.attr('style', 'width: 398px;');
+  } else {
+    $img.attr('style', 'width: 248px;');
+  }
+}
 
 /*--------------make terms draggable n resizable-------------*/
 $( ".termish" ).draggable().resizable();
@@ -97,25 +106,31 @@ $(wind).each(function(){
 });
 /*---------------------status bar button functions------------*/
 
-  $(".max").on("click", function (){
-  //--------the line below sets the affected div to whichever terminal window you've clicked
+$(".max").on("click", function () {
   const poi = $(this).parent().parent();
-  if ($(poi).hasClass('maxed')) {
-    $(poi).removeClass('maxed');
+  if (poi.is('#pic')) {
+    poi.toggleClass('maxed');
+    poi.removeClass('minned');
+    updateImageWidth();
   } else {
-    $(poi).addClass('maxed');
-    $(poi).removeClass('minned');
+    poi.toggleClass('maxed');
+    poi.removeClass('minned');
+    updateImageWidth();
   }
-  });
-$(".min").on("click",function(){
+});
+
+$(".min").on("click", function () {
   const poi = $(this).parent().parent();
-   if ($(poi).hasClass('minned')) {
-    $(poi).removeClass('minned');
+  if (poi.is('#pic')) {
+    poi.toggleClass('minned');
+    poi.removeClass('maxed');
+    updateImageWidth();
   } else {
-    $(poi).addClass('minned');
-    $(poi).removeClass('maxed');
-    }
-  });
+    poi.toggleClass('minned');
+    poi.removeClass('maxed');
+    updateImageWidth();
+  }
+});
 $(".quit").on("click", function (){
   const poi = $(this).parent().parent();
     $(poi).css("opacity", "0");
@@ -124,17 +139,6 @@ $(".quit").on("click", function (){
   const poi = $(this).parent().parent().parent();
     $(poi).css("opacity", "0");
   });
-
-/*wip function to change the pic width on resize*/
-/*const picImg = $('#pic').find('img');
-let picWidth;
-if ($('#pic').hasclass('maxed')){
-    picWidth = 'width: 398px; height: auto; display: block;';
-      $(picImg).attr('style', picWidth);
-} else {
-    picWidth = 'width: 248px; height:auto; display: block;';
-      $(picImg).attr('style', picWidth);
-}*/
 
   /*--------------------------loader------------------*/
 
