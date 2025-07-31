@@ -34,7 +34,7 @@ $('#terminal').terminal(
     }
   }, {
     prompt: 'user@legg.io:~ $ ',
-    greetings: greet.innerHTML
+    greetings: false
   } 
 );
 
