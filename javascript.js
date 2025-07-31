@@ -16,13 +16,13 @@ $('#terminal').terminal(
     } else if (command == 'hack'){;
       term.pause()
       term.echo("preparing to hack the mainframe ...", { typing: true, delay: 20, keepWords:true });
-      $('#mainframe').css({"opacity": "1", "z-index": "5", "height":"250px"});
+      $('#mainframe').css({"opacity": "1", "z-index": "5"});
         $('.frame-2').css({"opacity":"0"});
         $('.frame-1').css({"opacity":"1"});
         $('.frame-1').find('video').get(0).play();
         setTimeout(function () {
           $('.frame-1').animate({"opacity":"0"}, 100);
-          $('#mainframe').delay(100).animate({"height": "200px"}, 100);
+          $('#mainframe').animate({"height":"250px"},50);
           $('.frame-2').delay(150).animate({'opacity': '1'},100);
         }, 3050);
         setTimeout(function(){
@@ -50,10 +50,27 @@ function updateLogoSize() {
 
   $logoImg.attr('style', newStyle);
 }
+function updateRadarSize() {
+  const $radarVid = $('.radar').find('video');
+  const radarContainer = $('#mainframe');
+     if (!$radarVid.length || !radarContainer.length) return;
+
+     if (jQuery( window ).width() < 600) {
+        const containerWidth = radarContainer.width() - 28; // match your horizontal padding
+        const newStyle = `width: ${containerWidth}px; height: auto; display: block;`;
+
+        $radarVid.attr('style', newStyle);
+        $('#mainframe').css('height', (containerWidth + 148) + 'px');
+
+    }else{
+        $radarVid.attr('style', 'width:186px');
+    }
+}
 
 $(window).on('resize', updateLogoSize);
 $(document).ready(function () {
   updateLogoSize();
+  updateRadarSize();
 });
 
 /*--------update headshot width--------*/
@@ -134,15 +151,16 @@ $(".min").on("click", function () {
 $(".quit").on("click", function (){
   const poi = $(this).parent().parent();
     $(poi).css("opacity", "0");
+    focus([bool]);
   });
   $(".frame-2 span").on("click", function (){
   const poi = $(this).parent().parent().parent();
-    $(poi).css("opacity", "0");
+    $(poi).css({"opacity": "0", "z-index":"0"});
   });
 
   /*--------------------------loader------------------*/
 
-const retinaVid = $('#retina').find('video');
+/*const retinaVid = $('#retina').find('video');
 const stackVid = $('#stack').find('video');
 const loader = $("#loader");
 
@@ -175,10 +193,10 @@ $(document).ready(function(){
       startDelay:2320
     });
     setTimeout(function() {loader.css({"display": "none"})}, 3500);
-});
+});*/
 
 //turn off the above function and turn on the below function to hide the loading effect while editing the site
-/*$("#loader").css({"display":"none"});*/
+$("#loader").css({"display":"none"});
 
 /*-----------------basically media queries — simplify the site on small screens like phones-----*/
 if($(window).width() < 700){

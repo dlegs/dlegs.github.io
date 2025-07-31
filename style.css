@@ -247,6 +247,7 @@ body::selection{
 #mainframe{
     width:500px;
     height:250px;
+    transform-origin:center;
     left: calc(100vw - 550px);
     top:calc(100vh - 300px);
     opacity:0;
@@ -254,23 +255,30 @@ body::selection{
 .search{
     padding-top:10px;
 }
-.frame-1 p{
-    top:30px;
-    width: 230px;
+.frame-1{
     position:absolute;
+    top:37.5px;
+    display:flex;
+    flex-direction:row;
+}
+.frame-1 p{
+    width: 264px;
 }
 .radar{
     display:block;
-    margin-left: 288px;
-    padding: 12px 12px 12px 12px;
+    padding: 12px 12px 6px 12px;
 }
 .frame-2{
     position:absolute;
-    top:30px;
+    top:37.5px;
+    height: 200.5px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 .frame-2 p{
     width:420px;
-    margin-bottom:64px;
+    margin-top:12px;
 }
 .frame-2 span{
     transition:.2s;
@@ -279,6 +287,9 @@ body::selection{
     border:var(--outline);
     border-radius:2px;
     margin: 0 0 0 12px;
+}
+.buttons{
+    padding: 8px 0 8px 0;
 }
 /*----------------universal status bar styling for the terminals---------*/
 .status-bar{
@@ -360,10 +371,6 @@ canvas.dither-canvas {
         left:0vw;
         border:0px;
     }
-    .radar{
-        margin-left:calc(100% - 210px);
-    }
-
     #pic{
         display:none;
     }
@@ -371,21 +378,17 @@ canvas.dither-canvas {
         display:none;
     }
     #mainframe{
-        width:90vw;
-        left: 5vw;
+        width:calc(100% - 22px);
+        left: 12px;
+        top:50%;
+        transform:translateY(-50%);
     }
-    .frame-2{
-        top:39px;
-        height:160px;
+    .frame-1{
+        flex-direction:column;
+        justify-content:space-between;
     }
     .frame-2 p{
-        width: calc(100% - 24px);
-        /*margin-bottom: 44px;*/
-        margin-bottom:auto;
-    }
-    .buttons{
-        position:absolute;
-        bottom:22px;
+        width:calc(100% - 24px);
     }
     .decoy{
         display:none;
