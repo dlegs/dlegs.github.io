@@ -40,7 +40,6 @@ html{
     padding:0;
 }
 body{
-    position:absolute;
     top:0px;
     left:0px;
     padding:0px;
@@ -64,11 +63,11 @@ body::selection{
 /*-----------------------------loader--------------------------------*/
 #loader{
     z-index:10;
-    top:-1vh;
-    left:-1vw;
-    width:102vw;
-    height:102vh;
     position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     background:var(--dark);
     text-align:center;
     margin:0;
@@ -77,12 +76,6 @@ body::selection{
 #loader p{
     width:100vw;
     height:15px;
-}
-#retina, #stack, #granted{
-    position:relative;
-    top:48%;
-    left:50%;
-    transform:translate(-50%, -50%);
 }
 #retina{
     opacity:0;
@@ -342,6 +335,7 @@ body::selection{
 /*-----------classes as conditions----------*/
 .none{
     display:none;
+    z-index:0;
 }
 .twofifty{
     height:250px !important;

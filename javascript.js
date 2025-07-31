@@ -161,11 +161,10 @@ $(".min").on("click", function () {
 $(".quit").on("click", function (){
   const poi = $(this).parent().parent();
     $(poi).css("opacity", "0");
-    term.focus([bool]);
   });
   $(".frame-2 span").on("click", function (){
   const poi = $(this).parent().parent().parent();
-    $(poi).css({"opacity": "0", "z-index":"0"});
+    $(poi).css({"opacity": "0", "z-index":"-1"});
     $('#mainframe').removeClass('twofifty');
   });
 /*------------a function to center an element onscreen--------------*/
@@ -184,6 +183,7 @@ const stackVid = $('#stack').find('video');
 const loader = $("#loader");
 
 $(document).ready(function(){
+  $('#retina, #stack, #granted').center();
   $('#retina').css({'opacity': '1'});
   retinaVid.get(0).play();
       const typeRetina = new Typed('#retina-typed', {
