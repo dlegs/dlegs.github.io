@@ -339,6 +339,9 @@ body::selection{
 .minned{
     height:38px !important;
 }
+.minned .status-bar{
+    border-bottom:0px;
+}
 .minned .dither-canvas{
     display:none;
 }
