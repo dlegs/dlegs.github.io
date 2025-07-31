@@ -16,13 +16,14 @@ $('#terminal').terminal(
     } else if (command == 'hack'){;
       term.pause()
       term.echo("preparing to hack the mainframe ...", { typing: true, delay: 20, keepWords:true });
+      updateRadarSize();
       $('#mainframe').css({"opacity": "1", "z-index": "5"});
         $('.frame-2').css({"opacity":"0"});
         $('.frame-1').css({"opacity":"1"});
         $('.frame-1').find('video').get(0).play();
         setTimeout(function () {
-          $('.frame-1').animate({"opacity":"0"}, 100);
-          $('#mainframe').animate({"height":"250px"},50);
+          $('.frame-1').animate({"opacity":"0"}, 50);
+          $('#mainframe').animate({"height":"250px"},100);
           $('.frame-2').delay(150).animate({'opacity': '1'},100);
         }, 3050);
         setTimeout(function(){
