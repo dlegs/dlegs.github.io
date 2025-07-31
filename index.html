@@ -12,6 +12,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/js/jquery.terminal.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.45.2/css/jquery.terminal.min.css" rel="stylesheet"/>
 
+        <script src="dither.js"></script>
+
         <!----------------links for typewriter effect----------------------->
         <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
@@ -42,7 +44,7 @@
      <!------------one (1) pic of dylan j leggio esq-------->
         <section id="pic" data-name="legg.io / headshot" class="termish">
             <div class="status-bar"></div>
-            <img src="img/IMG_7503.png" class="dither" data-threshold='.8' data-dot-size='1' style="width: 248px" data-dither="atkinson">
+            <img src="img/IMG_7503.jpg" class="dither" data-threshold='.8' data-dot-size='1' style="width: 248px" data-dither="atkinson">
         </section>
 
     <!------------a 'hack the mainframe' dialogue-------->
@@ -61,7 +63,14 @@
      <!--the main terminal window, where the user interacts with the site-->
         <section class="termish" id="terminal" data-name="legg.io / terminal">
             <div class="status-bar"></div>
-            <div class="logo"><img class="dither" style="width: 10px" data-threshold='.17' data-dot-size='1' data-dither="atkinson" src="img/legg.svg"></div>
+            <div class="logo"><img class="dither" style="width: 10px" data-threshold='.17' data-dot-size='1' data-dither="atkinson" src="img/legg.svg">
+                <div class="text">Security engineer currently @ Google. To learn more, type a command, then press enter.<br>
+                      <span class="indent">resume</span>download resume<br>
+                      <span class="indent">git</span>access GitHub<br>
+                      <span class="indent">contact</span>initialize email<br>
+                      <span class="indent">hack</span>hack the mainframe
+                </div>
+            </div>
         </section>
 
      <!------a decorative terminal window that is purely to furnish the page---->
@@ -84,12 +93,12 @@
     </div>
 
     <!--------------------templates for the terminal------------------->
-<template id="greet">Security engineer currently @ Google. To learn more, type a command, then press enter.
+<!--<template id="greet">Security engineer currently @ Google. To learn more, type a command, then press enter.
 resume      download resume
 git         access GitHub
 contact     initialize email
 hack        hack the mainframe 
-        </template>
+        </template>-->
 
     <!--------------scripts------------------->
         <script src="javascript.js"></script>

@@ -100,6 +100,7 @@ body::selection{
     height:66vh;
     top:17vh;
     left:17vw;
+    max-width:850px;
     transition: transform .5s;
     z-index:1;
     --animation: terminal-underline;
@@ -129,9 +130,17 @@ body::selection{
     flex: 0 0 auto; /* fixed height */
 }
 .logo img {
-  /*width: calc(100% - 24px);*/
   height: auto; 
   display: block;
+  margin-bottom:9px;
+}
+.indent{
+   display:inline-block;
+   width:120px;
+}
+.text{
+    max-width:500px;
+    margin-bottom:9px;
 }
 .terminal-wrapper{
     --background: transparent;
@@ -341,49 +350,11 @@ canvas.dither-canvas {
   display: block;
 }
 /*---------media queries for a responsive layout across different screen sizes-------*/
-/*@media (max-width: 700px) {
-    #terminal{
-        width:92vw !important;
-        height:72vh !important;
-        top: 14vw;
-        left:4vw;
-    }
-
-    #mainframe{
-        height:310px !important;
-        width:210px;
-        top: calc( 100vh - 340px);
-        left: calc(100vw - 220px);
-    }
-    .frame-2 p, .frame-1 p{
-        width:184px;
-    }
-    #pic{
-        left:-56px;
-        top:calc(100vh - 300px);
-    }
-    .frame-2 p{
-        margin-bottom:110px;
-    }
-    .radar{
-        display:block;
-        margin-left: 0px;
-        margin-top:58px;
-        padding: 12px 12px 12px 12px;
-    }
-    .decoy{
-        top:12px;
-        right:8px;
-        width:70vw;
-    }
-    .folder{
-        left:0px;
-    }
-}*/
 @media screen and (max-width: 700px) {
     #terminal{
         width:100vw !important;
         height:100vh !important;
+        max-width:100vw;
         top: 0vh;
         left:0vw;
         border:0px;
@@ -401,6 +372,19 @@ canvas.dither-canvas {
     #mainframe{
         width:90vw;
         left: 5vw;
+    }
+    .frame-2{
+        top:39px;
+        height:160px;
+    }
+    .frame-2 p{
+        width: calc(100% - 24px);
+        /*margin-bottom: 44px;*/
+        margin-bottom:auto;
+    }
+    .buttons{
+        position:absolute;
+        bottom:22px;
     }
     .decoy{
         display:none;
