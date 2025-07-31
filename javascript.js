@@ -22,9 +22,9 @@ $('#terminal').terminal(
         $('.frame-1').css({"opacity":"1"});
         $('.frame-1').find('video').get(0).play();
         setTimeout(function () {
-          $('.frame-1').animate({"opacity":"0"}, 50);
-          $('#mainframe').animate({"height":"250px"},100);
-          $('.frame-2').delay(150).animate({'opacity': '1'},100);
+          $('.frame-1').animate({"opacity":"0"}, 100);
+          $('#mainframe').addClass('twofifty');
+          $('.frame-2').delay(50).animate({'opacity': '1'},100);
         }, 3050);
         setTimeout(function(){
             term.echo("error: no vulnerabilities found", { typing: true, delay: 20, keepWords:true });
@@ -51,6 +51,7 @@ function updateLogoSize() {
 
   $logoImg.attr('style', newStyle);
 }
+
 function updateRadarSize() {
   const $radarVid = $('.radar').find('video');
   const radarContainer = $('#mainframe');
@@ -72,8 +73,8 @@ $(window).on('resize', updateLogoSize);
 $(document).ready(function () {
   updateLogoSize();
   updateRadarSize();
+  setHackHeight();
 });
-
 /*--------update headshot width--------*/
 function updateImageWidth() {
   const $pic = $('#pic');
@@ -157,8 +158,17 @@ $(".quit").on("click", function (){
   $(".frame-2 span").on("click", function (){
   const poi = $(this).parent().parent().parent();
     $(poi).css({"opacity": "0", "z-index":"0"});
+    $('#mainframe').removeClass('twofifty');
   });
-
+/*------------a function to center an element onscreen--------------*/
+jQuery.fn.center = function () {
+    this.css("position","absolute");
+    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
+    $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+    $(window).scrollLeft()) + "px");
+    return this;
+}
   /*--------------------------loader------------------*/
 
 const retinaVid = $('#retina').find('video');
@@ -193,7 +203,8 @@ $(document).ready(function(){
       showCursor: false,
       startDelay:2320
     });
-    setTimeout(function() {loader.css({"display": "none"})}, 3500);
+    //setTimeout(function() {loader.css({"display": "none"})}, 3500);
+    setTimeout(function() {loader.addClass('none')}, 3500);
 });
 
 //turn off the above function and turn on the below function to hide the loading effect while editing the site
@@ -201,8 +212,8 @@ $(document).ready(function(){
 
 /*-----------------basically media queries — simplify the site on small screens like phones-----*/
 if($(window).width() < 700){
-  $('.termish').draggable("disable");
-  $('.termish').resizable("disable");
+  $('#terminal').draggable("disable");
+  $('#terminal').resizable("disable");
 } 
   //-----------------------------document closing bracket; don't touch
 });

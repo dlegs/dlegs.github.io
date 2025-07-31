@@ -35,12 +35,16 @@
     --dither-color-2: var(--light);
 }
 /*-------------------------global edits for the site-------------------*/
+html{
+    margin:0;
+    padding:0;
+}
 body{
     position:absolute;
     top:0px;
     left:0px;
-    padding:0;
-    margin:0;
+    padding:0px;
+    margin:0px;
     width:100vw;
     overflow:hidden;
     background: var(--dark);
@@ -246,7 +250,6 @@ body::selection{
 #mainframe{
     width:500px;
     height:250px;
-    transform-origin:center;
     left: calc(100vw - 550px);
     top:calc(100vh - 300px);
     opacity:0;
@@ -260,6 +263,7 @@ body::selection{
     top:37.5px;
     display:flex;
     flex-direction:row;
+    justify-content:space-between;
 }
 .frame-1 p{
     width: 264px;
@@ -332,6 +336,13 @@ body::selection{
     cursor:default;
     white-space:nowrap;
 }
+/*-----------classes as conditions----------*/
+.none{
+    display:none;
+}
+.twofifty{
+    height:250px !important;
+}
 /*-------------------status bar functions-------------------*/
 .maxed{
     width:94vw !important;
@@ -380,13 +391,14 @@ canvas.dither-canvas {
     }
     #mainframe{
         width:calc(100% - 22px);
-        left: 12px;
-        top:50%;
-        transform:translateY(-50%);
+        top:auto;
+        bottom:12px;
+        left:11px;
+        transform-origin:top;
     }
     .frame-1{
+        display:flex;
         flex-direction:column;
-        justify-content:space-between;
     }
     .frame-2 p{
         width:calc(100% - 24px);
