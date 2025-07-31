@@ -160,7 +160,7 @@ $(".quit").on("click", function (){
 
   /*--------------------------loader------------------*/
 
-/*const retinaVid = $('#retina').find('video');
+const retinaVid = $('#retina').find('video');
 const stackVid = $('#stack').find('video');
 const loader = $("#loader");
 
@@ -193,10 +193,10 @@ $(document).ready(function(){
       startDelay:2320
     });
     setTimeout(function() {loader.css({"display": "none"})}, 3500);
-});*/
+});
 
 //turn off the above function and turn on the below function to hide the loading effect while editing the site
-$("#loader").css({"display":"none"});
+/*$("#loader").css({"display":"none"});*/
 
 /*-----------------basically media queries — simplify the site on small screens like phones-----*/
 if($(window).width() < 700){
