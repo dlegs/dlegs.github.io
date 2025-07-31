@@ -38,6 +38,7 @@
 html{
     margin:0;
     padding:0;
+    height:-webkit-fill-available;
 }
 body{
     top:0px;
@@ -45,6 +46,8 @@ body{
     padding:0px;
     margin:0px;
     width:100vw;
+    min-height:100vw;
+    min-height:-webkit-fill-available;
     overflow:hidden;
     background: var(--dark);
     font-size:var(--font-size);
