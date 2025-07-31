@@ -152,7 +152,7 @@ $(".min").on("click", function () {
 $(".quit").on("click", function (){
   const poi = $(this).parent().parent();
     $(poi).css("opacity", "0");
-    focus([bool]);
+    term.focus([bool]);
   });
   $(".frame-2 span").on("click", function (){
   const poi = $(this).parent().parent().parent();
