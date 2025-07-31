@@ -225,7 +225,7 @@ body::selection{
 /*---------individual edits for each terminal window--------------*/  
 #pic{
     width:250px;
-    height:288px;
+    height:287.5px;
     top:40vh;
     left:50px;
     overflow:hidden;
@@ -340,7 +340,7 @@ body::selection{
     height:38px !important;
 }
 .minned .status-bar{
-    border-bottom:0px;
+    border-bottom:0px solid transparent !important;
 }
 .minned .dither-canvas{
     display:none;
