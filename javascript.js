@@ -23,8 +23,13 @@ $('#terminal').terminal(
         $('.frame-1').find('video').get(0).play();
         setTimeout(function () {
           $('.frame-1').animate({"opacity":"0"}, 100);
-          $('#mainframe').addClass('twofifty');
-          $('.frame-2').delay(50).animate({'opacity': '1'},100);
+          setTimeout(function(){
+            $('#mainframe').addClass('twofifty');
+            if (jQuery( window).width() < 700){
+                $('#mainframe').center();
+            }
+          }, 100);
+          $('.frame-2').delay(150).animate({'opacity': '1'},100);
         }, 3050);
         setTimeout(function(){
             term.echo("error: no vulnerabilities found", { typing: true, delay: 20, keepWords:true });
@@ -57,14 +62,18 @@ function updateRadarSize() {
   const radarContainer = $('#mainframe');
      if (!$radarVid.length || !radarContainer.length) return;
 
-     if (jQuery( window ).width() < 600) {
+     if (jQuery( window ).width() < 550) {
         const containerWidth = radarContainer.width() - 28; // match your horizontal padding
         const newStyle = `width: ${containerWidth}px; height: auto; display: block;`;
 
         $radarVid.attr('style', newStyle);
         $('#mainframe').css('height', (containerWidth + 148) + 'px');
+        $('#mainframe').center();
 
-    }else{
+    } else if (jQuery( window).width() < 700){
+         $('#mainframe').center();
+         $radarVid.attr('style', 'width:186px');
+    } else {
         $radarVid.attr('style', 'width:186px');
     }
 }
@@ -73,7 +82,6 @@ $(window).on('resize', updateLogoSize);
 $(document).ready(function () {
   updateLogoSize();
   updateRadarSize();
-  setHackHeight();
 });
 /*--------update headshot width--------*/
 function updateImageWidth() {
@@ -169,13 +177,14 @@ jQuery.fn.center = function () {
     $(window).scrollLeft()) + "px");
     return this;
 }
-  /*--------------------------loader------------------*/
+/*--------------------------loader------------------*/
 
 const retinaVid = $('#retina').find('video');
 const stackVid = $('#stack').find('video');
 const loader = $("#loader");
 
 $(document).ready(function(){
+  $('#retina').css({'opacity': '1'});
   retinaVid.get(0).play();
       const typeRetina = new Typed('#retina-typed', {
       strings: ['Scanning retina ...'],
