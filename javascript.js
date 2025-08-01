@@ -22,7 +22,7 @@ $('#terminal').terminal(
       term.echo("launching GitHub for user @dlegs ...", { typing: true, delay: 20, keepWords:true });
     } else if (command == 'hack'){;
       term.pause()
-      term.echo("preparing to hack the mainframe ...", { typing: true, delay: 20, keepWords:true });
+      term.echo("attempting to hack the mainframe ...", { typing: true, delay: 20, keepWords:true });
       updateRadarSize();
       $('#mainframe').css({"opacity": "1", "z-index": "5"});
         $('.frame-2').css({"opacity":"0"});
