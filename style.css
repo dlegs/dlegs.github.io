@@ -38,7 +38,6 @@
 html{
     margin:0;
     padding:0;
-    height:-webkit-fill-available;
 }
 body{
     top:0px;
@@ -46,8 +45,7 @@ body{
     padding:0px;
     margin:0px;
     width:100vw;
-    min-height:100vw;
-    min-height:-webkit-fill-available;
+    height: calc(var(--vh, 1vh) * 100);
     overflow:hidden;
     background: var(--dark);
     font-size:var(--font-size);
@@ -99,8 +97,8 @@ body::selection{
     flex-direction: column;
 
     width:66vw;
-    height:66vh;
-    top:17vh;
+    height: calc(var(--vh, 1vh) * 66);
+    top: calc(var(--vh, 1vh) * 17);
     left:17vw;
     transition: transform .5s;
     z-index:1;
@@ -188,7 +186,7 @@ body::selection{
 .decoy{
     right:50px;
     width:40vw;
-    height:40vh;
+    height: calc(var(--vh, 1vh) * 40);
     z-index:-2 !important;
     top:50px;
 }
@@ -221,30 +219,16 @@ body::selection{
     top:108px;
 }
 .folder:nth-of-type(3){
-    top:calc(100vh - 96px);
+    top:calc(100% - 88px);
 }
 
 /*---------individual edits for each terminal window--------------*/  
 #pic{
     width:250px;
     height:287.5px;
-    top:40vh;
+    top: calc(var(--vh, 1vh) * 40);
     left:50px;
     overflow:hidden;
-}
-#link{
-    width:250px;
-    height:350px;
-    top:22vh;
-    right:10vw;
-    display:none;
-}
-#docu{
-    width:500px;
-    height:200px;
-    left:14vw;
-    bottom:10vh;
-    display:none;
 }
 #mainframe{
     width:500px;
@@ -346,15 +330,15 @@ body::selection{
 /*-------------------status bar functions-------------------*/
 .maxed{
     width:94vw !important;
-    height:94vh !important;
+    height: calc(var(--vh, 1vh) * 94) !important;
     left:3vw !important;
-    top:3vh !important;
+    top: calc(var(--vh, 1vh) * 3) !important;
 }
 #pic.maxed{
     width:400px !important;
     height: 438px !important;
     left: calc(50vw - 200px) !important;
-    top:calc(50vh - 219px) !important;
+    top:calc(50% - 219px) !important;
 }
 #pic.maxed img{
     width: 400px;
@@ -378,8 +362,8 @@ canvas.dither-canvas {
 @media screen and (max-width: 700px) {
     #terminal{
         width:100vw !important;
-        height:100vh !important;
-        top: 0vh;
+        height: calc(var(--vh, 1vh) * 100) !important;
+        top: 0;
         left:0vw;
         border:0px;
     }
