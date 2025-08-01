@@ -46,7 +46,7 @@ $('#terminal').terminal(
       term.echo('unknown command', { typing: true, delay: 20, keepWords:true });
     }
   }, {
-    prompt: 'user@legg.io:~ $ ',
+    prompt: 'user@legg․io:~ $ ',
     greetings: false
   } 
 );
