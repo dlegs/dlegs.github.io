@@ -1,8 +1,13 @@
 $(document).ready(function () {
-window.onresize = function() {
-    document.body.height = window.innerHeight;
-}
-window.onresize(); // called to initially set the height
+$(function () {
+  function setViewportHeight() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+
+  setViewportHeight();
+  $(window).on('resize orientationchange', setViewportHeight);
+});
 /*---------------initialize terminal---------------*/
 $('#terminal').terminal(
   function(command, term) {
