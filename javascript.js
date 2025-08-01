@@ -11,9 +11,7 @@ $(function () {
 /*---------------initialize terminal---------------*/
 $('#terminal').terminal(
   function(command, term) {
-    if (command == 'test') {
-      term.echo("you've just typed 'test'", { typing: true, delay: 20, keepWords:true });
-    } else if (command == 'resume') {
+    if (command == 'resume') {
       window.open('https://github.com/dlegs/personal-website/blob/main/asset/resume.pdf', '_blank');
       term.echo("accessing resume in external window ...", { typing: true, delay: 20, keepWords:true });
     } else if (command == 'contact'){
