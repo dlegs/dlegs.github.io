@@ -225,7 +225,7 @@ body::selection{
 /*---------individual edits for each terminal window--------------*/  
 #pic{
     width:250px;
-    height:287.5px;
+    height:286.5px;
     top: calc(var(--vh, 1vh) * 40);
     left:50px;
     overflow:hidden;
