@@ -74,7 +74,6 @@
         result[idx + 2] = col.b;
         result[idx + 3] = 255;
 
-        // Diffuse error
         for (let ky = 0; ky < mat.length; ky++) {
           for (let kx = 0; kx < mat[ky].length; kx++) {
             const weight = mat[ky][kx];
@@ -154,7 +153,12 @@
     return Promise.resolve(ctx.getImageData(0, 0, res.width, res.height));
   }
 
- function renderDither(el, canvas) {
+function renderDither(el, canvas) {
+  // Skip rendering if the element is hidden or removed
+  if (!document.body.contains(el) || el.offsetWidth === 0 || el.offsetHeight === 0) {
+    return;
+  }
+
   const threshold = parseFloat(el.dataset.threshold) || .5;
   const type = el.dataset.dither || 'fs';
   const dotSize = parseInt(el.dataset.dotSize) || 1.5;
@@ -178,7 +182,6 @@
       output = ditherDiffusion(imageData, threshold, type, color1, color2);
     }
 
-    // Render at low res, then scale up cleanly
     canvas.width = output.width;
     canvas.height = output.height;
     canvas.style.width = displayWidth + 'px';
@@ -187,51 +190,110 @@
     const ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = false;
     ctx.putImageData(output, 0, 0);
+  }).catch(() => {
+    console.warn("Skipping rendering: element not ready or removed", el);
   });
 }
 
   function replaceWithCanvas(el) {
-    const canvas = document.createElement('canvas');
-    canvas.classList.add('dither-canvas');
-    canvas.style.position = 'absolute';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.pointerEvents = 'none';
+  const canvas = document.createElement('canvas');
+  canvas.classList.add('dither-canvas');
+  canvas.style.position = 'absolute';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.pointerEvents = 'none';
 
-    const wrapper = document.createElement('div');
-    wrapper.style.position = 'relative';
-    wrapper.style.display = 'inline-block';
-    el.parentNode.insertBefore(wrapper, el);
-    wrapper.appendChild(el);
-    wrapper.appendChild(canvas);
+  const wrapper = document.createElement('div');
+  wrapper.style.position = 'relative';
+  wrapper.style.display = 'inline-block';
+  el.parentNode.insertBefore(wrapper, el);
+  wrapper.appendChild(el);
+  wrapper.appendChild(canvas);
 
-    el.style.visibility = 'hidden';
-    renderDither(el, canvas);
+  el.style.visibility = 'hidden';
+  renderDither(el, canvas);
 
-    if (el.tagName === 'VIDEO') {
-      const loop = () => {
-        renderDither(el, canvas);
-        requestAnimationFrame(loop);
-      };
-      loop();
+  // Live update for video
+  let rafHandle = null;
+  const loop = () => {
+    if (!document.body.contains(el)) {
+      cancelAnimationFrame(rafHandle);
+      return;
     }
+    renderDither(el, canvas);
+    rafHandle = requestAnimationFrame(loop);
+  };
 
-    const resizeObserver = new ResizeObserver(() => {
-      renderDither(el, canvas);
-    });
-    resizeObserver.observe(el);
-
-    return canvas;
+  if (el.tagName === 'VIDEO') {
+    rafHandle = requestAnimationFrame(loop);
   }
 
-  function init() {
-    document.querySelectorAll('.dither').forEach(el => {
-      if (!el.dataset.processed) {
-        el.dataset.processed = "true";
-        replaceWithCanvas(el);
+  const resizeObserver = new ResizeObserver(() => {
+    if (!document.body.contains(el)) {
+      resizeObserver.disconnect();
+      return;
+    }
+    renderDither(el, canvas);
+  });
+  resizeObserver.observe(el);
+
+  return canvas;
+}
+
+  function isRenderable(el) {
+    return el.offsetWidth > 0 && el.offsetHeight > 0;
+  }
+
+  function waitUntilReady(el) {
+    return new Promise((resolve, reject) => {
+      if (el.tagName === "IMG") {
+        if (el.complete && el.naturalWidth > 0) return resolve();
+        el.addEventListener("load", resolve, { once: true });
+        el.addEventListener("error", reject, { once: true });
+      } else if (el.tagName === "VIDEO") {
+        if (el.readyState >= 2) return resolve();
+        el.addEventListener("loadeddata", resolve, { once: true });
+        el.addEventListener("error", reject, { once: true });
+      } else {
+        resolve();
       }
     });
   }
 
-  document.addEventListener("DOMContentLoaded", init);
+  function lazyInit(el) {
+    if (el.dataset.processed) return;
+
+    waitUntilReady(el)
+      .then(() => {
+        if (!isRenderable(el)) {
+          setTimeout(() => lazyInit(el), 100);
+          return;
+        }
+        el.dataset.processed = "true";
+        replaceWithCanvas(el);
+      })
+      .catch(() => {
+        console.warn("Failed to load or render dithered element", el);
+      });
+  }
+
+  function initLazyObserver() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          lazyInit(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: "200px",
+      threshold: 0.1
+    });
+
+    document.querySelectorAll(".dither").forEach(el => {
+      if (!el.dataset.processed) observer.observe(el);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initLazyObserver);
 })();
