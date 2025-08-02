@@ -24,7 +24,7 @@
     --blue:#3AD1FF;
     --purple:#D66DFF;
     --light: #B5FFCD;
-    --med:#39473F;
+    --med:#628A73;
     --dark: #161917;
     --outline: 1px solid var(--light);
     --font-size: 16px !important;
@@ -184,11 +184,11 @@ body::selection{
 }
 /*---------------------decoy-------------------*/
 .decoy{
-    right:50px;
+    right:36px;
     width:40vw;
     height: calc(var(--vh, 1vh) * 40);
     z-index:-2 !important;
-    top:50px;
+    top:36px;
 }
 .decoy, .decoy .status-bar span{
     color: var(--med);
@@ -202,8 +202,8 @@ body::selection{
 .folder{
    position:absolute;
    color:var(--med);
-   top:12px;
-   left:12px;
+   top:36px;
+   left:36px;
    font-size:12px;
    text-align:center;
    z-index:-1 !important;
@@ -216,10 +216,10 @@ body::selection{
     cursor:default;
 }
 .folder:nth-of-type(2){
-    top:108px;
+    top:132px;
 }
 .folder:nth-of-type(3){
-    top:calc(100% - 88px);
+    top:calc(100% - 108px);
 }
 
 /*---------individual edits for each terminal window--------------*/  
@@ -227,14 +227,14 @@ body::selection{
     width:250px;
     height:286.5px;
     top: calc(var(--vh, 1vh) * 40);
-    left:50px;
+    left:36px;
     overflow:hidden;
 }
 #mainframe{
     width:500px;
     height:250px;
-    left: calc(100vw - 550px);
-    top:calc(100vh - 300px);
+    left: calc(100vw - 536px);
+    top:calc(100vh - 286px);
     opacity:0;
 }
 .search{
